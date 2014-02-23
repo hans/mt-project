@@ -1,6 +1,7 @@
 import sys
 import getopt
 import os
+import itertools
 
 from nltk.tokenize import word_tokenize
 
@@ -40,9 +41,19 @@ class MT_ES_EN:
       EN_words = [self.ES_EN_dict.get(ES_word.lower(), [ES_word])
                   for ES_word in ES_sentence]
       self.EN_sentences.append(EN_words)
-    print self.EN_sentences
 
-"""
+    self._printTopCandidates()
+
+  def _printTopCandidates(self):
+    """
+    Print the top candidate translation for each sentence in the corpus.
+    """
+
+    for sentence_data in self.EN_sentences:
+      candidates = itertools.product(*sentence_data)
+      print ' '.join(next(candidates))
+
+
 def main():
   if len(sys.argv) != 3:
     print "Usage: 'python translator.py original_text.txt dictFile.txt'"
@@ -59,4 +70,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-"""
