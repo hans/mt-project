@@ -2,6 +2,8 @@ import sys
 import getopt
 import os
 
+from nltk.tokenize import word_tokenize
+
 class MT_ES_EN:
   def __init__(self):
     self.ES_EN_dict = {}
@@ -14,9 +16,7 @@ class MT_ES_EN:
     """
     f = open(fileName)
     for line in f:
-      words = []
-      for word in line.split():
-        words.append(word.lower())
+      words = word_tokenize(line)
       self.ES_sentences.append(words)
     f.close()
 
@@ -37,9 +37,8 @@ class MT_ES_EN:
     self.readSentences(sentenceFile)
     self.buildDict(dictFile)
     for ES_sentence in self.ES_sentences:
-      EN_words = []
-      for ES_word in ES_sentence:
-        EN_words.append(self.ES_EN_dict[ES_word])
+      EN_words = [self.ES_EN_dict.get(ES_word.lower(), [ES_word])
+                  for ES_word in ES_sentence]
       self.EN_sentences.append(EN_words)
     print self.EN_sentences
 
