@@ -1,5 +1,6 @@
+# -*- coding: utf-8 -*-
+
 import sys
-import getopt
 import os
 import itertools
 
@@ -17,6 +18,11 @@ class MT_ES_EN:
     """
     f = open(fileName)
     for line in f:
+      # Clean line
+      line = line.replace('—', '--')
+      line = line.replace('…', '...')
+      line = line.replace('¿', '¿ ')
+
       words = word_tokenize(line)
       self.ES_sentences.append(words)
     f.close()
@@ -31,7 +37,7 @@ class MT_ES_EN:
       self.ES_EN_dict[entry[0]] = entry[1:]
 
   def directTranslation(self, sentenceFile, dictFile):
-    """ 
+    """
     Takes Spanish text and a dictionary file, performs direct translation,
     storing the result in self.EN_sentences (and printing it out for now)
     """
