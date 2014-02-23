@@ -33,7 +33,7 @@ class MT_ES_EN:
     """
     f = open(fileName)
     for line in f:
-      entry = line.split()
+      entry = line.split(,)
       self.ES_EN_dict[entry[0]] = entry[1:]
 
   def directTranslation(self, sentenceFile, dictFile):
