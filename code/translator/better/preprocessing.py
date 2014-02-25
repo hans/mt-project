@@ -18,7 +18,7 @@ def find_sublist(xs, sublist):
 
     sublist_len = len(sublist)
     for i in xrange(0, len(xs)):
-        xs_sub = xs[i:sublist_len+1]
+        xs_sub = xs[i:i+sublist_len]
         if tuple(xs_sub) == tuple(sublist):
             yield i, i + sublist_len
 
@@ -27,7 +27,9 @@ def find_sublist(xs, sublist):
 #     (phrase, before_POS_context, after_POS_context) => replacement
 PHRASES = {
     # 'lo que' followed by a verb translates to English "what"
-    (('lo', 'que'), None, 'v......'): 'qué'
+    (('lo', 'que'), None, 'v......'): 'qué',
+
+    (('de', 'que'), None, '(n|d)......'): 'que',
 }
 
 def join_phrases(sentence, annotations):
@@ -48,8 +50,8 @@ def join_phrases(sentence, annotations):
                 if instance_start == 0:
                     continue
 
-                before_match = re.match(before_context,
-                                        annotations['pos'][instance_start - 1][1])
+                before_pos = annotations['pos'][instance_start - 1][1] or ''
+                before_match = re.match(before_context, before_pos)
                 if not before_match:
                     continue
 
@@ -58,8 +60,10 @@ def join_phrases(sentence, annotations):
                 if instance_end == len(sentence):
                     continue
 
-                after_match = re.match(after_context,
-                                       annotations['pos'][instance_end][1])
+                after_pos = annotations['pos'][instance_end][1] or ''
+                print tokens, after_pos
+                after_match = re.match(after_context, after_pos)
+
                 if not after_match:
                     continue
 
