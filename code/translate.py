@@ -1,7 +1,9 @@
 import itertools
+import logging
 import os.path
 import sys
 
+from translator.better import BetterTranslator
 from translator.direct import DirectTranslator
 
 
@@ -16,7 +18,9 @@ def main():
         print "Dictionary file is invalid"
         return
 
-    translators = [DirectTranslator]
+    logging.getLogger().setLevel(logging.DEBUG)
+
+    translators = [DirectTranslator, BetterTranslator]
 
     for translator_class in translators:
         translator = translator_class(sys.argv[2])

@@ -5,9 +5,17 @@ TODO: remove awkwardness"""
 
 
 from translator.core import Translator
+from translator.better import preprocessing
 
 
 class BetterTranslator(Translator):
+
+    PREPROCESSING_PIPELINE = [
+        preprocessing.annotate_pos,
+
+        preprocessing.join_phrases
+    ]
+
     def preprocess(self, sentence):
         """Given a list of tokens from a source language sentence,
         preprocess the tokens. Returns a tuple of the form
@@ -15,7 +23,11 @@ class BetterTranslator(Translator):
 
         TODO: describe annotations result"""
 
-        return sentence, []
+        annotations = {}
+        for step in self.PREPROCESSING_PIPELINE:
+            sentence, annotations = step(sentence, annotations)
+
+        return sentence, annotations
 
     def translate(self, sentence):
         sentence, annotations = self.preprocess(sentence)
