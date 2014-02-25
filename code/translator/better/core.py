@@ -4,7 +4,7 @@ name.
 TODO: remove awkwardness"""
 
 
-from core import Translator
+from translator.core import Translator
 
 
 class BetterTranslator(Translator):

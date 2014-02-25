@@ -1,4 +1,4 @@
-from core import Translator
+from translator.core import Translator
 
 class DirectTranslator(Translator):
     """A `Translator` which performs naive word-to-word translation of
