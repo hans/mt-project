@@ -10,6 +10,8 @@ import re
 from nltk import BigramTagger, UnigramTagger
 from nltk.corpus import cess_esp
 
+from translator.better.tagger import BetterTagger
+
 
 def find_sublist(xs, sublist):
     """Yields the `(start, end)` indices of the instances of `sublist`
@@ -103,10 +105,10 @@ def annotate_pos(sentence, annotations):
                 TAGGER = pickle.load(f)
         else:
             training_data = cess_esp.tagged_sents()
+
             unigram_tagger = UnigramTagger(training_data)
             bigram_tagger = BigramTagger(training_data, backoff=unigram_tagger)
-
-            TAGGER = bigram_tagger
+            TAGGER = BetterTagger(bigram_tagger)
 
             with open(TAGGER_FILENAME, 'w') as f:
                 pickle.dump(TAGGER, f)
