@@ -4,11 +4,11 @@ name.
 TODO: remove awkwardness"""
 
 
-from translator.core import Translator
+from translator.direct import DirectTranslator
 from translator.better import preprocessing
 
 
-class BetterTranslator(Translator):
+class BetterTranslator(DirectTranslator):
 
     PREPROCESSING_PIPELINE = [
         preprocessing.annotate_pos,
@@ -32,5 +32,10 @@ class BetterTranslator(Translator):
     def translate(self, sentence):
         sentence, annotations = self.preprocess(sentence)
 
-        return [self.dictionary.get(word.lower(), [word])
-                for word in sentence]
+        # Perform direct translation
+        #
+        # TODO: just call super().get_candidate_words(), and then run
+        # postprocessing
+        translated = super(BetterTranslator, self).translate(sentence)
+
+        return translated

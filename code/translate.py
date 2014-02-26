@@ -27,8 +27,7 @@ def main():
         sentences = translator.translate_sentences(sys.argv[1])
 
         print '----- %s' % translator_class
-        for sentence in sentences:
-            print ' '.join(next(itertools.product(*sentence)))
+        print '\n'.join(sentences)
 
 
 if __name__ == '__main__':
