@@ -61,7 +61,6 @@ def join_phrases(sentence, annotations):
                     continue
 
                 after_pos = annotations['pos'][instance_end][1] or ''
-                print tokens, after_pos
                 after_match = re.match(after_context, after_pos)
 
                 if not after_match:
