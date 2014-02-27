@@ -1,3 +1,3 @@
 import preprocessing
 
-from core import BetterTranslator
+from core import BetterTranslator, PerClauseTranslator

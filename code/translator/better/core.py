@@ -67,6 +67,41 @@ class BetterTranslator(DirectTranslator):
         return ' '.join(postprocessing_data[0][0])
 
 
+class PerClauseTranslator(BetterTranslator):
+    def __init__(self, *args, **kwargs):
+        super(PerClauseTranslator, self).__init__(*args, **kwargs)
+
+    CLAUSE_BOUNDARIES = [',', 'que', 'y']
+
+    def get_clauses(self, tokens):
+        """Split a list of Spanish tokens into separate clauses. Yields
+        values of the form `(clause, separator)`, where `clause` is a
+        list of tokens in the yielded clause and `separator` is the
+        token used to separate this clause from the next (potentially
+        null)."""
+
+        result = []
+        for token in tokens:
+            if token in self.CLAUSE_BOUNDARIES:
+                yield result, token
+                result = []
+            else:
+                result.append(token)
+
+        yield result, None
+
+    def translate(self, sentence):
+        result = []
+        for clause, boundary in self.get_clauses(sentence):
+            result.append(super(PerClauseTranslator, self).translate(clause))
+
+            if boundary is not None:
+                result.append(super(PerClauseTranslator, self)
+                              .translate([boundary]))
+
+        return ' '.join(result)
+
+
 def take(iterator, n):
     """Take up to `n` elements from `iterator`."""
 
