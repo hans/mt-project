@@ -215,6 +215,7 @@ class BetterTagger(TaggerI):
         ## infinitivo con pronombre(s) ##
 
         ('([aei])r(?:[mtl]es?|n?os)', r'\1r', 'vmn0000'),
+        ('([aei])r(?:[mt]e|l[oa]s?|n?os)', r'\1r', 'vmn0000'),
     ]
 
     VERB_INFINITIVE_TRANSITIONS_RE = [
