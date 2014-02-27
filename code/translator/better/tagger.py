@@ -211,6 +211,10 @@ class BetterTagger(TaggerI):
         ('ando$', 'ar', 'vmg0000'),
         ('iendo$', 'er', 'vmg0000'),
         ('iendo$', 'ir', 'vmg0000'),
+
+        ## infinitivo con pronombre(s) ##
+
+        ('([aei])r(?:[mtl]es?|n?os)', r'\1r', 'vmn0000'),
     ]
 
     VERB_INFINITIVE_TRANSITIONS_RE = [
@@ -253,7 +257,7 @@ class BetterTagger(TaggerI):
 
                 # See if what we have now is an infinitive
                 test_tag = self.tagger.tag([replaced])[0][1]
-                if (test_tag == 'vmn0000'
+                if (test_tag == 'vmn0000' or test_tag == 'van0000'
                     or self.IRREGULAR_STEMS_RE.search(replaced)):
                     # All good! Append the right tag now
                     results.append((i, tag))
