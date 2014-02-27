@@ -36,33 +36,29 @@ class BetterTranslator(DirectTranslator):
         postprocessing.pick_best_candidate
     ]
 
-    def postprocess(self, data):
+    def postprocess(self, source_annotations, data):
         """Thread data through the postprocessing pipeline. Returns the
         result of the final step of the pipeline."""
 
         for step in self.POSTPROCESSING_PIPELINE:
-            data = step(data)
+            data = step(source_annotations, data)
 
         return data
 
     def translate(self, sentence):
-        sentence, annotations = self.preprocess(sentence)
+        sentence, source_annotations = self.preprocess(sentence)
 
         # Perform direct translation
         candidate_words = (super(BetterTranslator, self)
                            .get_candidate_words(sentence))
 
-        # TODO: handle combinatorial explosion in a better way
-        candidate_sentences = itertools.product(*candidate_words)
-        candidate_sentences = take(candidate_sentences, 10)
-
-        # Copy annotation blob for each candidate sentence
-        annotations_list = [copy.deepcopy(annotations)
-                            for _ in range(len(candidate_sentences))]
+        candidate_sentences = list(itertools.product(*candidate_words))
 
         # Now build a list of `(candidate_sentence, annotations)` pairs
-        postprocessing_data = zip(candidate_sentences, annotations_list)
-        postprocessing_data = self.postprocess(postprocessing_data)
+        postprocessing_data = [(candidate, {})
+                               for candidate in candidate_sentences]
+        postprocessing_data = self.postprocess(source_annotations,
+                                               postprocessing_data)
 
         if not postprocessing_data:
             return None

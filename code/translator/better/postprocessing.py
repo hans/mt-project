@@ -6,17 +6,17 @@ Functions in this module are threaded together into a pipeline in
 `translator.better.core`. They must satisfy a simple contract,
 expressible with a simple type signature:
 
-    postprocessor :: [(Sent, Ann)] -> [(Sent, Ann)]
+    postprocessor :: SourceAnn -> [(Sent, Ann)] -> [(Sent, Ann)]
 
-That is, each postprocessor function accepts a list of `(sentence,
-annotation)` tuples (where each `sentence` is a list of tokens and each
-`annotation` is an arbitrary `dict` containing data about the
-corresponding sentence) and returns a list of the same form, possibly
-with fewer or more tuples and possibly with the given tuples modified in
-some way."""
+That is, each postprocessor function accepts source annotations and a
+list of `(sentence, annotation)` tuples (where each `sentence` is a list
+of tokens and each `annotation` is an arbitrary `dict` containing data
+about the corresponding sentence) and returns a list of the same form,
+possibly with fewer or more tuples and possibly with the given tuples
+modified in some way."""
 
 
-def pick_best_candidate(data):
+def pick_best_candidate(source_ann, data):
     """The final postprocessing step which picks just one sentence from
     the candidate list."""
 
