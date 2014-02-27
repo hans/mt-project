@@ -100,16 +100,3 @@ class PerClauseTranslator(BetterTranslator):
                               .translate([boundary]))
 
         return ' '.join(result)
-
-
-def take(iterator, n):
-    """Take up to `n` elements from `iterator`."""
-
-    result = []
-    for _ in range(n):
-        try:
-            result.append(next(iterator))
-        except StopIteration:
-            return result
-
-    return result
