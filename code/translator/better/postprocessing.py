@@ -103,7 +103,10 @@ class CustomLanguageModel:
 
     # Use unigram for single words
     if (len(sentence) == 1):
-        log_prob += self.unigram_dict[sentence[0]]
+        if sentence[0] in self.unigram_dict:
+            log_prob += self.unigram_dict[sentence[0]]
+        else:
+            log_prob += self.unigram_dict["<UNK>"]
         return log_prob
 
     # Use bigrams for the beginning of the sentence
