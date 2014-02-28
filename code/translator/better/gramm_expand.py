@@ -43,11 +43,20 @@ def expand_sent(tags,en_lists):
         if simp_tag == 'v':
             use_pronoun = 'n' not in simp_tags[:i] and 'p' not in simp_tags[:i]
             en_lists[i] = expand_verb(tags[i],en_lists[i],use_pronoun)
-        elif simp_tag == 's':
-            en_lists[i].append('')
+        # elif simp_tag == 's':
+        #     en_lists[i].append('')
     return en_lists
-    
-print expand_sent(['pp1csn00','sps00','vmip3p0'],[['I'],['to','for'],['have','hold']])
 
+def gramm_expand(sentences,annotations):
+    """Formats everything correctly for the contract"""
+    for sentence in sentences:
+        posses = annotations['pos'] # Spanish parts of speech
+        list_sent = [[word] for word in sentence]
+        return ([word[0] for word in expand_sent(posses,list_sent)],annotations)
+    
+    
+#print expand_sent(['pp1csn00','sps00','vmip3p0'],[['I'],['to','for'],['have','hold']])
+
+print gramm_expand([['to','have'],['to','hold']],{'pos':['sps00','vmip3p0']})
 
 
