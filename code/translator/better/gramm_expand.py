@@ -35,8 +35,7 @@ def expand_verb(tag, en_list, use_pronoun):
             elif persona == '2':
                 pronoun = 'you '
             elif persona == '3':
-                pronoun = 'he ' if numero == 's' else 'they '
-                # sorry for being sexist
+                pronoun = '' if numero == 's' else 'they '
 
         return [pronoun + en_word + get_conjugated_ending(en_word, tag)
                 for en_word in en_list]
@@ -47,6 +46,7 @@ def expand_sent(tagged_tokens,en_lists):
     """Takes the pos tags of a sentence, looks for verbs, and expands
     them, deciding whether or not they need the pronoun"""
 
+    full_tags = [(tag or None) for _, tag in tagged_tokens]
     simp_tags = [((tag and tag[0]) or None) for _, tag in tagged_tokens]
     for i, (t, tag) in enumerate(tagged_tokens):
         if tag and tag.startswith('v') and (not tag[2] == 'p'):
@@ -75,6 +75,7 @@ def gramm_expand(annotations,data):
         # print "sli",sentence_list[i]
 
         #print sentence_list
+    print annotations
     return sentence_list
 
 

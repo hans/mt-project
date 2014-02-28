@@ -60,6 +60,38 @@ def fix_dont(source_ann, data):
 
     return data
 
+def dont_in_verb(source_ann,data):
+    """don't I write -> I don't write
+    actually expanded for all adverbs"""
+
+    pos_tags = source_ann['pos']
+
+    length = len(pos_tags)
+
+    def mark(i):
+        return i < length - 2 \
+            and pos_tags[i][1] and pos_tags[i][1][0] == 'r' \
+            and pos_tags[i+1][1] and pos_tags[i+1][1][0] == 'v'
+
+    dont_places = [i for i,tag in enumerate(pos_tags) \
+                   if mark(i)]
+
+    for sent_tup in data:
+        sent = sent_tup[0]
+        #print 'sent:',sent
+        for i in dont_places:
+            #sent = data[i][0]
+            
+
+            compound = sent[i+1].split() #assume it splits in two
+            if len(compound) > 1:
+                sent[i+1] = compound[0] +' '+ sent[i] +' '+ compound[1]
+                sent[i] = ''
+                data[i] = (sent,{})
+
+        
+    return data
+
 
 def fix_demonstratives(source_ann, data):
     PHRASES = {

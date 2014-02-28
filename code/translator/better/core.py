@@ -40,6 +40,7 @@ class BetterTranslator(DirectTranslator):
         gramm_expand.gramm_expand,
         postprocessing.fix_an,
         postprocessing.fix_dont,
+        postprocessing.dont_in_verb,
         postprocessing.pick_best_candidate
     ]
 
