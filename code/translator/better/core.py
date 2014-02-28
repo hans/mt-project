@@ -14,8 +14,9 @@ class BetterTranslator(DirectTranslator):
     PREPROCESSING_PIPELINE = [
         preprocessing.annotate_pos,
         preprocessing.join_phrases,
-        preprocessing.invert_by_pos('a.....', 'n......'),
-        preprocessing.invert_by_pos('pp...[^o]..', 'v......'),
+        preprocessing.revert_by_pos('n......', 'a.....'),
+        preprocessing.revert_by_pos(None, 'a.....'),
+        preprocessing.revert_by_pos('pp...[^o]..', 'v......'),
     ]
 
     def preprocess(self, sentence):

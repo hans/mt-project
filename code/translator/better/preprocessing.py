@@ -134,14 +134,45 @@ def annotate_pos(sentence, annotations):
     return sentence, annotations
 
 
-def invert_by_pos(pos_before, pos_after):
+def revert_by_pos(pos_before, pos_after):
     """Build a preprocessing function which swaps one or more instances
     of tokens with the POS `pos_before` with one or more instances of
     tokens with the POS `pos_after` when the latter tokens directly
     succeed the former."""
 
-    def invert_fn(sentence, annotations):
-        # TODO
+    before_re = (pos_before and re.compile(pos_before)) or None
+    after_re = (pos_after and re.compile(pos_after)) or None
+
+    def revert_fn(sentence, annotations):
+        # TODO: Support more than two-element swap
+        pos = annotations['pos']
+        pos_bigrams = zip(pos, pos[1:])
+
+        to_swap = []
+        skip_next = False
+
+        for i, ((t1, pos_tag_1), (_, pos_tag_2)) in enumerate(pos_bigrams):
+            if skip_next:
+                skip_next = False
+                continue
+
+            before_match = ((pos_tag_1 is None and before_re is None)
+                            or (pos_tag_1 is not None and before_re is not None
+                               and before_re.match(pos_tag_1)))
+            after_match = ((pos_tag_2 is None and after_re is None)
+                           or (pos_tag_2 is not None and after_re is not None
+                              and after_re.match(pos_tag_2)))
+
+            if before_match and after_match:
+                to_swap.append(i)
+                skip_next = True
+
+        for i in to_swap:
+            sentence[i], sentence[i + 1] = sentence[i + 1], sentence[i]
+            pos[i + 1], pos[i] = pos[i], pos[i + 1]
+            print '!!', pos[i], pos[i + 1]
+
         return sentence, annotations
 
-    return invert_fn
+
+    return revert_fn
