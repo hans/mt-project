@@ -286,12 +286,11 @@ class BetterTagger(TaggerI):
         pronouns are direct object pronouns (when ambiguous)."""
 
         for i, (token, tag) in enumerate(tagged_tokens):
-            if tag is None:
-                if token in self.DIRECT_OBJECT_PRONOUNS:
-                    form = self.DIRECT_OBJECT_PRONOUNS[token]
-                    tagged_tokens[i] = (token, 'pp{}a00'.format(form))
-                elif token in self.INDIRECT_OBJECT_PRONOUNS:
-                    form = self.INDIRECT_OBJECT_PRONOUNS[token]
-                    tagged_tokens[i] = (token, 'pp{}d00'.format(form))
+            if token in self.DIRECT_OBJECT_PRONOUNS:
+                form = self.DIRECT_OBJECT_PRONOUNS[token]
+                tagged_tokens[i] = (token, 'pp{}a00'.format(form))
+            elif token in self.INDIRECT_OBJECT_PRONOUNS:
+                form = self.INDIRECT_OBJECT_PRONOUNS[token]
+                tagged_tokens[i] = (token, 'pp{}d00'.format(form))
 
         return tagged_tokens

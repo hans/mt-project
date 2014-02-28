@@ -170,7 +170,6 @@ def revert_by_pos(pos_before, pos_after):
         for i in to_swap:
             sentence[i], sentence[i + 1] = sentence[i + 1], sentence[i]
             pos[i + 1], pos[i] = pos[i], pos[i + 1]
-            print '!!', pos[i], pos[i + 1]
 
         return sentence, annotations
 
