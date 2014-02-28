@@ -148,6 +148,8 @@ class CustomLanguageModel:
         bestSentence = sentence_list[i]
     return bestSentence
 
+EN_model = None
+
 def pick_best_candidate(source_ann, data):
     """The final postprocessing step which picks just one sentence from
     the candidate list."""
@@ -160,7 +162,10 @@ def pick_best_candidate(source_ann, data):
             corpus.extend(file_contents.read().split())
     corpus_list = []
     corpus_list.append(corpus)
-    EN_model = CustomLanguageModel(corpus_list)
+    
+    global EN_model
+    if EN_model is None:
+        EN_model = CustomLanguageModel(corpus_list)
 
     return EN_model.best_sentence(data)
 
