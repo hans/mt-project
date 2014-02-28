@@ -4,8 +4,21 @@
 # This should happen AFTER word order has been rearranged to
 # be more English-like
 
+def get_conjugated_ending(verb, tag):
+    tiempo = tag[3]
+    persona = tag[4]
+    numero = tag[5]
+
+    if (persona == '3' and numero == 's' and tiempo == 'p'
+        and verb != 'is' and verb[-2:] != 'es'):
+        if verb[-1] == 's':
+            return 'es'
+        else:
+            return 's'
+    return ''
+
 # e.g. expand_verb('vmip3p0',['have','hold'],True)
-def expand_verb(tag,en_list,use_pronoun):
+def expand_verb(tag, en_list, use_pronoun):
     """ Takes a verb with a POS tag and adds pronoun to the words in the
     en_list """
 
@@ -25,11 +38,8 @@ def expand_verb(tag,en_list,use_pronoun):
                 pronoun = 'he ' if numero == 's' else 'they '
                 # sorry for being sexist
 
-
-        final_s = lambda en_word: ('es' if en_word[-1] == 's' else 's') \
-              if persona == '3' and numero == 's' and tiempo == 'p' else ''
-
-        return [pronoun + en_word + final_s(en_word) for en_word in en_list]
+        return [pronoun + en_word + get_conjugated_ending(en_word, tag)
+                for en_word in en_list]
     else:
         return en_list
 
@@ -40,7 +50,8 @@ def expand_sent(tagged_tokens,en_lists):
     simp_tags = [((tag and tag[0]) or None) for _, tag in tagged_tokens]
     for i, (t, tag) in enumerate(tagged_tokens):
         if tag and tag.startswith('v') and (not tag[2] == 'p'):
-            use_pronoun = 'n' not in simp_tags[:i] and 'p' not in simp_tags[:i]
+            use_pronoun = ('n' not in simp_tags[:i] and 'p' not in simp_tags[:i]
+                           and not any('this' in en_list for en_list in en_lists[:i + 2]))
             en_lists[i] = expand_verb(tagged_tokens[i][1], en_lists[i],
                                       use_pronoun)
         # elif simp_tag == 's':
