@@ -25,6 +25,7 @@ class BetterTranslator(DirectTranslator):
 
         annotations = {}
         for step in self.PREPROCESSING_PIPELINE:
+            print '\t\tPreprocessing: ', step
             sentence, annotations = step(sentence, annotations)
 
         return sentence, annotations
@@ -39,20 +40,25 @@ class BetterTranslator(DirectTranslator):
         result of the final step of the pipeline."""
 
         for step in self.POSTPROCESSING_PIPELINE:
+            print '\t\tPostprocessing: ', step
             data = step(source_annotations, data)
 
         return data
 
     def translate(self, sentence):
+        print ' '.join(sentence[:8]) + ' ...'
+        print '\tInitializing preprocessing'
         sentence, source_annotations = self.preprocess(sentence)
 
         # Perform direct translation
         candidate_words = (super(BetterTranslator, self)
                            .get_candidate_words(sentence))
 
+        print '\tCalculating Cartesian product'
         candidate_sentences = list(itertools.product(*candidate_words))
 
         # Now build a list of `(candidate_sentence, annotations)` pairs
+        print '\tInitiating postprocessing'
         postprocessing_data = [(candidate, {})
                                for candidate in candidate_sentences]
         postprocessing_data = self.postprocess(source_annotations,
@@ -62,6 +68,7 @@ class BetterTranslator(DirectTranslator):
             return None
 
         # TODO: ' '.join(..) is not optimal
+        print '\tDone'
         return ' '.join(postprocessing_data[0][0])
 
 
