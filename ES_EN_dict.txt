@@ -234,3 +234,5 @@ es,this is,you are
 ésta,this
 tal,such,suchlike
 penelope,penelope
+palacete,mansion
+perdió,lost,lose
