@@ -210,6 +210,20 @@ class BetterTagger(TaggerI):
         ('iendo$', 'er', 'vmg0000'),
         ('iendo$', 'ir', 'vmg0000'),
 
+        ## participio pasado ##
+        ('ado$', 'ar', 'vmp00sm'),
+        ('ada$', 'ar', 'vmp00sf'),
+        ('ados$', 'ar', 'vmp00pm'),
+        ('adas$', 'ar', 'vmp00pf'),
+        ('ido$', 'er', 'vmp00sm'),
+        ('ida$', 'er', 'vmp00sf'),
+        ('idos$', 'er', 'vmp00pm'),
+        ('idas$', 'er', 'vmp00pf'),
+        ('ido$', 'ir', 'vmp00sm'),
+        ('ida$', 'ir', 'vmp00sf'),
+        ('idos$', 'ir', 'vmp00pm'),
+        ('idas$', 'ir', 'vmp00pf'),
+
         ## infinitivo con pronombre(s) ##
 
         ('([aei])r(?:[mtl]es?|n?os)', r'\1r', 'vmn0000'),
