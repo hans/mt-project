@@ -84,6 +84,12 @@ class BetterTagger(TaggerI):
         ('íais$', 'ir', 'vmii2p0'),
         ('ían$', 'ir', 'vmii3p0'),
 
+        ('ía$', 'ír', 'vmii1s0'),
+        ('ías$', 'ír', 'vmii2s0'),
+        ('íamos$', 'ír', 'vmii1p0'),
+        ('íais$', 'ír', 'vmii2p0'),
+        ('ían$', 'ír', 'vmii3p0'),
+
         ## preterito perfecto simple ##
 
         ('é$', 'ar', 'vmis1s0'),
@@ -248,11 +254,8 @@ class BetterTagger(TaggerI):
 
     # Irregular stems joined with their associated verb ending
     IRREGULAR_STEMS = [
-        # saber
-        's',
-
         # subjunctive stems
-        'hager',
+        'hager', 'vengir',
 
          # conditional / future stems
         'cabrer', 'pondrer', 'dirir', 'habrer', 'saldrir', 'harer',
@@ -261,6 +264,13 @@ class BetterTagger(TaggerI):
         # preterite stems
         'anduvar', 'estuvar', 'tuver', 'cuper', 'huber', 'puder',
         'puser', 'super', 'hicer', 'quiser', 'vinir',
+
+        # these really should be supported.. not actually irregular
+        # verbs, just for some reason not detected by POS core
+        'doler', 'gastar', 'reír', 'rogar', 'sujetar',
+
+        # saber (sé form)
+        'sar',
     ]
 
     IRREGULAR_STEMS_RE = re.compile('(?:{})$'.format('|'.join(IRREGULAR_STEMS)))
@@ -284,10 +294,12 @@ class BetterTagger(TaggerI):
 
                 # See if what we have now is an infinitive
                 test_tag = self.tagger.tag([replaced])[0][1]
+                print '\t\t\tTesting {} -- tag {}'.format(replaced, test_tag)
                 if (test_tag == 'vmn0000' or test_tag == 'van0000'
                     or self.IRREGULAR_STEMS_RE.search(replaced)):
                     # All good! Append the right tag now
                     results.append((i, tag))
+                    break
 
         return results
 
