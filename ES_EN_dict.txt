@@ -54,7 +54,7 @@ matrimonio,marriage,married,couple,matrimony
 rogarte,beg
 no,no,not,nay
 me,me,myself
-escribas,scribes,scribe
+escribas,write,scribes,scribe
 más,more,most,plus
 olvides,forget,neglect,leave
 que,that,what,than
