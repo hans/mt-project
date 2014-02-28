@@ -63,11 +63,15 @@ def fix_dont(source_ann, data):
 
 def fix_demonstratives(source_ann, data):
     PHRASES = {
-        (('no',), None, 'd.....'): ('not', None),
+        (('no',), None, 'd.....|pp3fsa00'): ('not', None),
         (('the', 'our'), None, None): ('ours', None),
+        (('the', 'ours'), None, None): ('ours', None),
         (('the', 'your'), None, None): ('yours', None),
+        (('the', 'yours'), None, None): ('yours', None),
         (('the', 'my'), None, None): ('mine', None),
+        (('the', 'mine'), None, None): ('mine', None),
         (('the', 'their'), None, None): ('theirs', None),
+        (('the', 'theirs'), None, None): ('theirs', None),
     }
     ret = []
 
