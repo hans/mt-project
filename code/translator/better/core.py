@@ -6,7 +6,7 @@ TODO: remove awkwardness"""
 import itertools
 
 from translator.direct import DirectTranslator
-from translator.better import preprocessing, postprocessing
+from translator.better import preprocessing, postprocessing, gramm_expand
 
 
 class BetterTranslator(DirectTranslator):
@@ -35,6 +35,8 @@ class BetterTranslator(DirectTranslator):
 
 
     POSTPROCESSING_PIPELINE = [
+        gramm_expand.prep_homicide,
+        #gramm_expand.gramm_expand,
         postprocessing.fix_an,
         postprocessing.fix_dont,
         postprocessing.pick_best_candidate
@@ -43,6 +45,7 @@ class BetterTranslator(DirectTranslator):
     def postprocess(self, source_annotations, data):
         """Thread data through the postprocessing pipeline. Returns the
         result of the final step of the pipeline."""
+
 
         for step in self.POSTPROCESSING_PIPELINE:
             print '\t\tPostprocessing: ', step
