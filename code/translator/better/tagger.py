@@ -216,6 +216,11 @@ class BetterTagger(TaggerI):
 
         ('([aei])r(?:[mtl]es?|n?os)', r'\1r', 'vmn0000'),
         ('([aei])r(?:[mt]e|l[oa]s?|n?os)', r'\1r', 'vmn0000'),
+
+        ## gerundio con pronombre(s) ##
+        ('ándo(?:[mtl]es?|n?os)', 'ar', 'vmg0000'),
+        ('iéndo(?:[mtl]es?|n?os)', 'er', 'vmg0000'),
+        ('iéndo(?:[mtl]es?|n?os)', 'ir', 'vmg0000'),
     ]
 
     VERB_INFINITIVE_TRANSITIONS_RE = [
@@ -225,6 +230,9 @@ class BetterTagger(TaggerI):
 
     # Irregular stems joined with their associated verb ending
     IRREGULAR_STEMS = [
+        # saber
+        's',
+
         # subjunctive stems
         'hager',
 
