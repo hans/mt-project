@@ -199,22 +199,22 @@ class BetterTagger(TaggerI):
         ## preterito imperfecto 2 ##
 
         ('ase$', 'ar', 'vmsi1s0'),
-        ('ases$', 'ar', 'vmsi1s0'),
-        ('ásemos$', 'ar', 'vmsi1s0'),
-        ('aseis$', 'ar', 'vmsi1s0'),
-        ('asen$', 'ar', 'vmsi1s0'),
+        ('ases$', 'ar', 'vmsi2s0'),
+        ('ásemos$', 'ar', 'vmsi1p0'),
+        ('aseis$', 'ar', 'vmsi2p0'),
+        ('asen$', 'ar', 'vmsi3p0'),
 
         ('iese$', 'er', 'vmsi1s0'),
-        ('ieses$', 'er', 'vmsi1s0'),
-        ('iésemos$', 'er', 'vmsi1s0'),
-        ('ieseis$', 'er', 'vmsi1s0'),
-        ('iesen$', 'er', 'vmsi1s0'),
+        ('ieses$', 'er', 'vmsi2s0'),
+        ('iésemos$', 'er', 'vmsi1p0'),
+        ('ieseis$', 'er', 'vmsi2p0'),
+        ('iesen$', 'er', 'vmsi3p0'),
 
         ('iese$', 'ir', 'vmsi1s0'),
-        ('ieses$', 'ir', 'vmsi1s0'),
-        ('iésemos$', 'ir', 'vmsi1s0'),
-        ('ieseis$', 'ir', 'vmsi1s0'),
-        ('iesen$', 'ir', 'vmsi1s0'),
+        ('ieses$', 'ir', 'vmsi2s0'),
+        ('iésemos$', 'ir', 'vmsi1p0'),
+        ('ieseis$', 'ir', 'vmsi2p0'),
+        ('iesen$', 'ir', 'vmsi3p0'),
 
         ## gerundio ##
 
@@ -329,6 +329,7 @@ class BetterTagger(TaggerI):
         for i, token, transitioned, test_tag, replacement_tag in transitions:
             if (test_tag == 'vmn0000' or test_tag == 'van0000'
                 or self.IRREGULAR_STEMS_RE.search(transitioned)):
+                print transitioned, replacement_tag
                 yield i, replacement_tag
 
     ADJECTIVE_ROOT_TRANSITIONS = [
