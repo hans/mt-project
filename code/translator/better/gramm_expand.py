@@ -75,7 +75,6 @@ def gramm_expand(annotations,data):
         # print "sli",sentence_list[i]
 
         #print sentence_list
-    print annotations
     return sentence_list
 
 
