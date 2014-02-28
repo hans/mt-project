@@ -15,6 +15,7 @@ about the corresponding sentence) and returns a list of the same form,
 possibly with fewer or more tuples and possibly with the given tuples
 modified in some way."""
 
+import copy
 import math
 import os
 import sys
@@ -61,12 +62,18 @@ def fix_dont(source_ann, data):
 
 
 def fix_demonstratives(source_ann, data):
-    PHRASES = {(('the', 'our'), None, None): ('ours', None)}
+    PHRASES = {
+        (('no',), None, 'd.....'): ('not', None),
+        (('the', 'our'), None, None): ('ours', None),
+        (('the', 'your'), None, None): ('yours', None),
+        (('the', 'my'), None, None): ('mine', None),
+        (('the', 'their'), None, None): ('theirs', None),
+    }
     ret = []
 
     for sentence, annotations in data:
         # Super hacky
-        annotations['pos'] = [(t, None) for t in sentence]
+        annotations['pos'] = copy.copy(source_ann['pos'])
 
         s, a = join_phrases(sentence, annotations, PHRASES)
         ret.append((s, a))
