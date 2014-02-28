@@ -23,12 +23,10 @@ class BetterTagger(TaggerI):
                     in enumerate(tagged_tokens)
                     if tag is None]
 
-        adjustments = []
-
-        adjustments.extend(self.add_verb_tags(untagged, tokens))
-
-        for index, new_pos in adjustments:
+        for index, new_pos in self.add_verb_tags(untagged, tokens):
             tagged_tokens[index] = (tagged_tokens[index][0], new_pos)
+
+        tagged_tokens = self.refine_pronoun_tags(tagged_tokens)
 
         return tagged_tokens
 
@@ -272,3 +270,28 @@ class BetterTagger(TaggerI):
                     results.append((i, tag))
 
         return results
+
+    DIRECT_OBJECT_PRONOUNS = {
+        'me': '1cs', 'te': '2cs', 'lo': '3ms', 'la': '3fs',
+        'nos': '1cp', 'os': '2cp', 'los': '3mp', 'las': '3fp'
+    }
+
+    INDIRECT_OBJECT_PRONOUNS = {
+        'me': '1cs', 'te': '2cs', 'le': '3cs', 'nos': '1cp',
+        'os': '2cp', 'les': '3cp'
+    }
+
+    def refine_pronoun_tags(self, tagged_tokens):
+        """"Refine" pronoun tags a bit by asserting that all object
+        pronouns are direct object pronouns (when ambiguous)."""
+
+        for i, (token, tag) in enumerate(tagged_tokens):
+            if tag is None:
+                if token in self.DIRECT_OBJECT_PRONOUNS:
+                    form = self.DIRECT_OBJECT_PRONOUNS[token]
+                    tagged_tokens[i] = (token, 'pp{}a00'.format(form))
+                elif token in self.INDIRECT_OBJECT_PRONOUNS:
+                    form = self.INDIRECT_OBJECT_PRONOUNS[token]
+                    tagged_tokens[i] = (token, 'pp{}d00'.format(form))
+
+        return tagged_tokens
