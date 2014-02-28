@@ -10,41 +10,41 @@ rescate,rescue,ransom,recovery
 comprendí,understood,comprise,comprehend
 que,that,what,than
 aquella,that
-visión,view,vision,sight
-era,era,age,eon
-ruina,ruin,downfall,ruination
-de,of,from,by
+visión,view,vision
+era,era,age
+ruina,ruin,downfall
+de,of,from
 una,a,an,one
 práctica,practice,practicing
 ya,already,anymore,by now
 desuso,disuse,desuetude
 un,a,an,one
-eco,echo,reverberation,replication
-de,of,from,by
+eco,echo,replication
+de,of,from
 tiempos,time
 en,in,on,at
 que,that,what,than
 las,the,them
-familias,families,household,kin
+familias,families
 acaudaladas,wealthy,substantial
-disponían,possessed,provide,dispose
-de,of,from,by
+disponían,possessed,dispose
+de,of,from
 maniquís,mannequins
 creados,created
 a,to,at,of
-la,the,la,her
-medida,measure,measurement,action
-de,of,from,by
+la,the,her
+medida,measure,action
+de,of,from
 los,the,them
-miembros,member,limb,fellow
-de,of,from,by
-familia,family,household,kin
+miembros,member,limb
+de,of,from
+familia,family
 para,for,to,in order to
-confección,making,confection,makeup
-de,of,from,by
-vestidos,clothes,apparel,clothing
+confección,making,confection
+de,of,from
+vestidos,clothes
 y,and
-ajuares,trousseau,bottom drawer
+ajuares,trousseau
 te,you,thee,yourself
 escribo,write,spell,write out
 anunciarte,advertise
@@ -146,7 +146,7 @@ incluso,even,including,actually
 doña,dona
 encarna,embodies,embody,incarnate
 perdío,lose,misplace,miss
-la,the,la,her
+la,the,her
 compostura,composure,composition,refit
 gobernanta,governess,housekeeper,matron
 llevó,lead,carry,take
@@ -187,7 +187,7 @@ lo,it,the,him
 estaba,was,be,stay
 sucediendo,happening,occur,befall
 cuando,when,as,whenever
-ya,already,anymore,by,now
+ya,already,anymore,by now
 había,had,have
 vuelta,return,turn,round
 atrás,back,behind,after

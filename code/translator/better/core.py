@@ -4,6 +4,7 @@ name.
 TODO: remove awkwardness"""
 
 import itertools
+import operator
 
 from translator.direct import DirectTranslator
 from translator.better import preprocessing, postprocessing, gramm_expand
@@ -56,7 +57,7 @@ class BetterTranslator(DirectTranslator):
         return data
 
     def translate(self, sentence):
-        print ' '.join(sentence[:8]) + ' ...'
+        print ' '.join(sentence[:8]) + ' ... ' + ''.join(sentence[-1:])
         print '\tInitializing preprocessing'
         sentence, source_annotations = self.preprocess(sentence)
 
@@ -64,12 +65,16 @@ class BetterTranslator(DirectTranslator):
         candidate_words = (super(BetterTranslator, self)
                            .get_candidate_words(sentence))
 
-        print '\tCalculating Cartesian product'
+        lengths = [len(cands) for cands in candidate_words]
+        print lengths
+        product_size = reduce(operator.mul, lengths)
+
+        print '\tCalculating Cartesian product (size: ', product_size, ')'
         candidate_sentences = list(itertools.product(*candidate_words))
 
         # Now build a list of `(candidate_sentence, annotations)` pairs
         print '\tInitiating postprocessing'
-        postprocessing_data = [(list(candidate), {})
+        postprocessing_data = [(candidate, {})
                                for candidate in candidate_sentences]
         postprocessing_data = self.postprocess(source_annotations,
                                                postprocessing_data)

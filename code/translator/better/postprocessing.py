@@ -49,7 +49,7 @@ def fix_dont(source_ann, data):
     to_modify = []
     for i, ((source_t, _), (_, next_tag)) in enumerate(zip(source_ann['pos'],
                                                         source_ann['pos'][1:])):
-        if source_t.lower() != 'no' or not next_tag.startswith('v'):
+        if source_t.lower() != 'no' or not next_tag or not next_tag.startswith('v'):
             continue
 
         to_modify.append(i)
@@ -81,7 +81,7 @@ def dont_in_verb(source_ann,data):
         #print 'sent:',sent
         for i in dont_places:
             #sent = data[i][0]
-            
+
 
             compound = sent[i+1].split() #assume it splits in two
             if len(compound) > 1:
@@ -89,7 +89,7 @@ def dont_in_verb(source_ann,data):
                 sent[i] = ''
                 data[i] = (sent,{})
 
-        
+
     return data
 
 
@@ -105,13 +105,11 @@ def fix_demonstratives(source_ann, data):
         (('the', 'their'), None, None): ('theirs', None),
         (('the', 'theirs'), None, None): ('theirs', None),
     }
+
     ret = []
-
     for sentence, annotations in data:
-        # Super hacky
-        annotations['pos'] = copy.copy(source_ann['pos'])
-
-        s, a = join_phrases(sentence, annotations, PHRASES)
+        # Super hacky: pass in source annotations
+        s, a = join_phrases(sentence, source_ann, PHRASES)
         ret.append((s, a))
 
     return ret
