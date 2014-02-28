@@ -35,6 +35,8 @@ class BetterTranslator(DirectTranslator):
 
 
     POSTPROCESSING_PIPELINE = [
+        postprocessing.fix_an,
+        postprocessing.fix_dont,
         postprocessing.pick_best_candidate
     ]
 
@@ -62,7 +64,7 @@ class BetterTranslator(DirectTranslator):
 
         # Now build a list of `(candidate_sentence, annotations)` pairs
         print '\tInitiating postprocessing'
-        postprocessing_data = [(candidate, {})
+        postprocessing_data = [(list(candidate), {})
                                for candidate in candidate_sentences]
         postprocessing_data = self.postprocess(source_annotations,
                                                postprocessing_data)

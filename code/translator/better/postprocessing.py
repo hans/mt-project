@@ -20,6 +20,44 @@ import os
 import sys
 import itertools
 
+
+VOWELS = ('a', 'e', 'i', 'o', 'u')
+def fix_an(source_annotations, data):
+    """Drop sentences which incorrectly use a/an."""
+
+    result = []
+    for sentence, annotations in data:
+        drop = False
+        for t1, t2 in zip(sentence, sentence[1:]):
+            if t1 == 'a' and t2.startswith(VOWELS):
+                drop = True
+                break
+            elif t1 == 'an' and not t2.startswith(VOWELS):
+                drop = True
+                break
+
+        if not drop:
+            result.append((sentence, annotations))
+
+    return result
+
+
+def fix_dont(source_ann, data):
+    to_modify = []
+    for i, ((source_t, _), (_, next_tag)) in enumerate(zip(source_ann['pos'],
+                                                        source_ann['pos'][1:])):
+        if source_t.lower() != 'no' or not next_tag.startswith('v'):
+            continue
+
+        to_modify.append(i)
+
+    for sentence, annotations in data:
+        for i in to_modify:
+            sentence[i] = "don't"
+
+    return data
+
+
 class CustomLanguageModel:
 
   def __init__(self, corpus):
