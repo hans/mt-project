@@ -39,7 +39,7 @@ def expand_sent(tagged_tokens,en_lists):
 
     simp_tags = [((tag and tag[0]) or None) for _, tag in tagged_tokens]
     for i, (t, tag) in enumerate(tagged_tokens):
-        if tag and tag.startswith('v') and (not tag[3] == 'p'):
+        if tag and tag.startswith('v') and (not tag[2] == 'p'):
             use_pronoun = 'n' not in simp_tags[:i] and 'p' not in simp_tags[:i]
             en_lists[i] = expand_verb(tagged_tokens[i][1], en_lists[i],
                                       use_pronoun)
