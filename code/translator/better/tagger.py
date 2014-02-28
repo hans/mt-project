@@ -32,7 +32,7 @@ class BetterTagger(TaggerI):
 
         tagged_tokens = self.refine_pronoun_tags(tagged_tokens)
 
-        print '\tUntagged: ', [token for token, tag in tagged_tokens if tag is None]
+        print '\t\t\tUntagged: ', [token for token, tag in tagged_tokens if tag is None]
 
         return tagged_tokens
 
@@ -275,6 +275,44 @@ class BetterTagger(TaggerI):
 
     IRREGULAR_STEMS_RE = re.compile('(?:{})$'.format('|'.join(IRREGULAR_STEMS)))
 
+    def taggable_transitions(self, untagged_tokens, transitions):
+        """Yield a list of possible tags for untagged tokens. Yields
+        elements of the form `(i, token, transitioned_token, test_tag,
+        replacement_tag)`, where `i` indicates the position of `token`
+        within its source sentence, `test_tag` indicates the POS tag
+        value given to the transitioned form, and `replacement_tag`
+        indicates the suggested POS of the original token (as encoded
+        within `transitions`).
+
+        Arguments:
+
+        - `untagged_tokens`: A list where elements are of the form `(i,
+          token)`, where `i` indicates the position of the untagged
+          token `token` in its source sentence
+        - `transitions`: A list of tuples of the form `(regex,
+          replacement, tag)`, where each element indicates that should
+          the regex-replacement on a token using the first two arguments
+          yield some valid test tag (where "validity" is decided by the
+          caller), the source token should be given a POS tag of `tag`."""
+
+        min_i = 0
+        for i, u_token in untagged_tokens:
+            # Don't yield more than one element for any given `i`
+            if i < min_i:
+                continue
+
+            for regex, replacement, tag in transitions:
+                replaced = regex.sub(replacement, u_token)
+                if replaced == u_token:
+                    continue
+
+                test_tag = self.tagger.tag([replaced])[0][1]
+                yield i, u_token, replaced, test_tag, tag
+
+                # Make sure we don't yield anything more for the element
+                # at this index
+                min_i = i + 1
+
     def add_verb_tags(self, untagged_tokens, sentence):
         """Given a list of untagged tokens of the form `(sentence_index,
         token)` and the containing sentence `sentence`, attempt to
@@ -285,23 +323,13 @@ class BetterTagger(TaggerI):
         tag)]`, where each element in the list describes a tag
         discovered by the method."""
 
-        results = []
-        for i, u_token in untagged_tokens:
-            for regex, replacement, tag in self.VERB_INFINITIVE_TRANSITIONS_RE:
-                replaced = regex.sub(replacement, u_token)
-                if replaced == u_token:
-                    continue
+        transitions = self.taggable_transitions(
+            untagged_tokens, self.VERB_INFINITIVE_TRANSITIONS_RE)
 
-                # See if what we have now is an infinitive
-                test_tag = self.tagger.tag([replaced])[0][1]
-                print '\t\t\tTesting {} -- tag {}'.format(replaced, test_tag)
-                if (test_tag == 'vmn0000' or test_tag == 'van0000'
-                    or self.IRREGULAR_STEMS_RE.search(replaced)):
-                    # All good! Append the right tag now
-                    results.append((i, tag))
-                    break
-
-        return results
+        for i, token, transitioned, test_tag, replacement_tag in transitions:
+            if (test_tag == 'vmn0000' or test_tag == 'van0000'
+                or self.IRREGULAR_STEMS_RE.search(transitioned)):
+                yield i, replacement_tag
 
     ADJECTIVE_ROOT_TRANSITIONS = [
         ('a$', 'o', 'fs'),
@@ -325,21 +353,16 @@ class BetterTagger(TaggerI):
         tag)]`, where each element in the list describes a tag
         discovered by the method."""
 
-        results = []
-        for i, u_token in untagged_tokens:
-            for regex, replacement, tag in self.ADJECTIVE_ROOT_TRANSITIONS_RE:
-                replaced = regex.sub(replacement, u_token)
-                if replaced == u_token:
-                    continue
+        transitions = self.taggable_transitions(
+            untagged_tokens, self.ADJECTIVE_ROOT_TRANSITIONS_RE)
 
-                # See if what we have now is an adjective root
-                test_tag = self.tagger.tag([replaced])[0][1]
-                if test_tag and test_tag.startswith('a'):
-                    new_tag = '{}{}{}'.format(test_tag[:3], tag, test_tag[5:])
-                    results.append((i, new_tag))
-                    break
+        for i, _, _, test_tag, replacement_tag in transitions:
+            if test_tag and test_tag.startswith('a'):
+                new_tag = '{}{}{}'.format(test_tag[:3], replacement_tag,
+                                          test_tag[5:])
 
-        return results
+                # All good! Append the right tag now
+                yield i, new_tag
 
     DIRECT_OBJECT_PRONOUNS = {
         'me': '1cs', 'te': '2cs', 'lo': '3ms', 'la': '3fs',
@@ -355,7 +378,7 @@ class BetterTagger(TaggerI):
         """"Refine" pronoun tags a bit by asserting that all object
         pronouns are direct object pronouns (when ambiguous)."""
 
-        for i, (token, tag) in enumerate(tagged_tokens):
+        for i, (token, _) in enumerate(tagged_tokens):
             if token in self.DIRECT_OBJECT_PRONOUNS:
                 form = self.DIRECT_OBJECT_PRONOUNS[token]
                 tagged_tokens[i] = (token, 'pp{}a00'.format(form))
