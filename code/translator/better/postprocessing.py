@@ -45,7 +45,6 @@ class CustomLanguageModel:
 
     # Add <unk>
     self.unigram_dict["<UNK>"] = 0
-    print "Trained unigram model"
 
     # Calculate bigram counts
     bigram = ''
@@ -56,7 +55,6 @@ class CustomLanguageModel:
                 self.bigram_dict[bigram] += 1
             else:
                 self.bigram_dict[bigram] = 1
-    print "Trained bigram model"
 
 
     # Calculate trigram counts
@@ -68,7 +66,6 @@ class CustomLanguageModel:
                 self.trigram_dict[trigram] += 1
             else:
                 self.trigram_dict[trigram] = 1
-    print "Trained trigram model"
 
 
     # Build trigram unsmoothed log-probabilities
@@ -78,14 +75,11 @@ class CustomLanguageModel:
         trigram_prob = math.log(self.trigram_dict[trigram]) - math.log(self.bigram_dict[first_bigram])
         self.trigram_dict[trigram] = trigram_prob
 
-    print "Trigram probs"
-
     # Build bigram unsmoothed log-probabilities
     bigram_prob = 0.0
     for bigram in self.bigram_dict:
         bigram_prob = math.log(self.bigram_dict[bigram]) - math.log(self.unigram_dict[bigram.split()[0]])
         self.bigram_dict[bigram] = bigram_prob
-    print "Bigram probs"
 
     # Build Laplace unigram log-probabilities
     word_prob = 0.0
@@ -93,7 +87,6 @@ class CustomLanguageModel:
     for word in self.unigram_dict:
         word_prob = math.log(self.unigram_dict[word] + 1) - math.log(num_words + vocab_size)
         self.unigram_dict[word] = word_prob
-    print "Unigram probs"
 
   def score(self, sentence):
     """ Takes a list of strings as argument and returns the log-probability of the 
@@ -163,8 +156,9 @@ def pick_best_candidate(source_ann, data):
         if os.path.isfile(curr_file) and ".txt" in curr_file:
             file_contents = open(curr_file, 'r')
             corpus.extend(file_contents.read().split())
-
-    EN_model = CustomLanguageModel(corpus)
+    corpus_list = []
+    corpus_list.append(corpus)
+    EN_model = CustomLanguageModel(corpus_list)
 
     return EN_model.best_sentence(data)
 
