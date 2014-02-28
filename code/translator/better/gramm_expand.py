@@ -33,15 +33,16 @@ def expand_verb(tag,en_list,use_pronoun):
     else:
         return en_list
 
-def expand_sent(tags,en_lists):
+def expand_sent(tagged_tokens,en_lists):
     """Takes the pos tags of a sentence, looks for verbs, and expands
     them, deciding whether or not they need the pronoun"""
 
-    simp_tags = [((tag[1] and tag[1][0]) or None) for tag in tags]
-    for i, simp_tag in enumerate(simp_tags):
-        if simp_tag == 'v':
+    simp_tags = [((tag and tag[0]) or None) for _, tag in tagged_tokens]
+    for i, (_, tag) in enumerate(tagged_tokens):
+        if tag and tag.startswith('v') and (not tag[2] == 'p'):
             use_pronoun = 'n' not in simp_tags[:i] and 'p' not in simp_tags[:i]
-            en_lists[i] = expand_verb(tags[i][1], en_lists[i], use_pronoun)
+            en_lists[i] = expand_verb(tagged_tokens[i][1], en_lists[i],
+                                      use_pronoun)
         # elif simp_tag == 's':
         #     en_lists[i].append('')
     return en_lists
