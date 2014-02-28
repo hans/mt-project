@@ -15,18 +15,24 @@ class BetterTagger(TaggerI):
     def __init__(self, tagger):
         self.tagger = tagger
 
+    def _get_untagged(self, tagged_tokens):
+        return [(i, token) for i, (token, tag) in enumerate(tagged_tokens)
+                if tag is None]
+
     def tag(self, tokens):
         tagged_tokens = self.tagger.tag(tokens)
 
-        # Collect untagged tokens and their indices
-        untagged = [(i, token) for i, (token, tag)
-                    in enumerate(tagged_tokens)
-                    if tag is None]
-
-        for index, new_pos in self.add_verb_tags(untagged, tokens):
-            tagged_tokens[index] = (tagged_tokens[index][0], new_pos)
+        for idx, new_pos in self.add_verb_tags(self._get_untagged(tagged_tokens),
+                                            tokens):
+            tagged_tokens[idx] = (tagged_tokens[idx][0], new_pos)
+        for idx, new_pos in self.add_adj_tags(self._get_untagged(tagged_tokens),
+                                           tokens):
+            # TODO DRY
+            tagged_tokens[idx] = (tagged_tokens[idx][0], new_pos)
 
         tagged_tokens = self.refine_pronoun_tags(tagged_tokens)
+
+        print '\tUntagged: ', [token for token, tag in tagged_tokens if tag is None]
 
         return tagged_tokens
 
@@ -282,6 +288,44 @@ class BetterTagger(TaggerI):
                     or self.IRREGULAR_STEMS_RE.search(replaced)):
                     # All good! Append the right tag now
                     results.append((i, tag))
+
+        return results
+
+    ADJECTIVE_ROOT_TRANSITIONS = [
+        ('a$', 'o', 'fs'),
+        ('os$', 'o', 'mp'),
+        ('as$', 'o', 'fp'),
+        ('es$', 'e', 'cp'),
+    ]
+
+    ADJECTIVE_ROOT_TRANSITIONS_RE = [
+        (re.compile(regex), replacement, resultant_tag)
+        for regex, replacement, resultant_tag in ADJECTIVE_ROOT_TRANSITIONS
+    ]
+
+    def add_adj_tags(self, untagged_tokens, sentence):
+        """Given a list of untagged tokens of the form `(sentence_index,
+        token)` and the containing sentence `sentence`, attempt to
+        provide accurate part-of-speech tags for mistakenly untagged
+        adjectives.
+
+        Returns a potentially empty list of the form `[(sentence_index,
+        tag)]`, where each element in the list describes a tag
+        discovered by the method."""
+
+        results = []
+        for i, u_token in untagged_tokens:
+            for regex, replacement, tag in self.ADJECTIVE_ROOT_TRANSITIONS_RE:
+                replaced = regex.sub(replacement, u_token)
+                if replaced == u_token:
+                    continue
+
+                # See if what we have now is an adjective root
+                test_tag = self.tagger.tag([replaced])[0][1]
+                if test_tag and test_tag.startswith('a'):
+                    new_tag = '{}{}{}'.format(test_tag[:3], tag, test_tag[5:])
+                    results.append((i, new_tag))
+                    break
 
         return results
 

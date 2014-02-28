@@ -123,11 +123,6 @@ def annotate_pos(sentence, annotations):
             with open(TAGGER_FILENAME, 'w') as f:
                 pickle.dump(TAGGER, f)
 
-    # TODO: get more aggressive with POS tagging, especially re: verbs.
-    # Lots of conjugated forms don't get tagged correctly. Maybe we can
-    # write a module which tries to reach an infinitive and, if it
-    # manages, remembers how it got there to determine what verb type
-    # it's looking at?
     parts_of_speech = TAGGER.tag([t.lower() for t in sentence])
 
     annotations['pos'] = parts_of_speech
