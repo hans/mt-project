@@ -88,14 +88,19 @@ class PerClauseTranslator(BetterTranslator):
 
         for token in tokens:
             if token in self.CLAUSE_BOUNDARIES and not ignore_next:
-                yield result, token
-                result = []
+                # Don't yield an empty clause
+                if result:
+                    yield result, token
+                    result = []
+                else:
+                    result.append(token)
             else:
                 result.append(token)
 
             ignore_next = token in self.CLAUSE_NON_BOUNDARY_PREFIXES
 
-        yield result, None
+        if result:
+            yield result, None
 
     def translate(self, sentence):
         result = []
