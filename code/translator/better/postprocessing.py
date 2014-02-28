@@ -30,9 +30,9 @@ class CustomLanguageModel:
     self.train(corpus)
 
   def train(self, corpus):
-    """ Takes a corpus and trains your language model. 
+    """ Takes a corpus and trains your language model.
         Compute any counts or other corpus statistics in this function.
-    """  
+    """
    # Build dictionary of unigrams and counts
     num_words = 0
     for sentence in corpus:
@@ -96,7 +96,7 @@ class CustomLanguageModel:
     print "Unigram probs"
 
   def score(self, sentence):
-    """ Takes a list of strings as argument and returns the log-probability of the 
+    """ Takes a list of strings as argument and returns the log-probability of the
         sentence using your language model. Use whatever data you computed in train() here.
     """
     log_prob = 0.0
@@ -141,7 +141,7 @@ class CustomLanguageModel:
       return []
 
     bestScore = float('-inf')
-    
+
     for i in xrange(0, len(sentence_list)):
       # Selects the maximum probability sentence here, according to the noisy channel model.
       currSentence = sentence_list[i][0][:]
@@ -153,10 +153,13 @@ class CustomLanguageModel:
         bestSentence = sentence_list[i]
     return bestSentence
 
+
+EN_model = None
+
 def pick_best_candidate(source_ann, data):
     """The final postprocessing step which picks just one sentence from
     the candidate list."""
-    path = '../../../corpus/data/'
+    path = '../corpus/data/'
     corpus = []
     for file in os.listdir(path):
         curr_file = os.path.join(path, file)
@@ -164,7 +167,8 @@ def pick_best_candidate(source_ann, data):
             file_contents = open(curr_file, 'r')
             corpus.extend(file_contents.read().split())
 
-    EN_model = CustomLanguageModel(corpus)
+    global EN_model
+    if EN_model is None:
+        EN_model = CustomLanguageModel(corpus)
 
     return EN_model.best_sentence(data)
-
