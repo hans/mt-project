@@ -9,7 +9,6 @@ def expand_verb(tag,en_list,use_pronoun):
     """ Takes a verb with a POS tag and adds pronoun to the words in the
     en_list """
 
-
     if tag[0] == 'v':
         tiempo = tag[3]
         persona = tag[4]
@@ -29,7 +28,7 @@ def expand_verb(tag,en_list,use_pronoun):
 
         final_s = lambda en_word: ('es' if en_word[-1] == 's' else 's') \
               if persona == '3' and numero == 's' and tiempo == 'p' else ''
-            
+
         return [pronoun + en_word + final_s(en_word) for en_word in en_list]
     else:
         return en_list
@@ -37,12 +36,12 @@ def expand_verb(tag,en_list,use_pronoun):
 def expand_sent(tags,en_lists):
     """Takes the pos tags of a sentence, looks for verbs, and expands
     them, deciding whether or not they need the pronoun"""
-    
-    simp_tags = [tag[0] for tag in tags]
-    for i,simp_tag in enumerate(simp_tags):
+
+    simp_tags = [((tag[1] and tag[1][0]) or None) for tag in tags]
+    for i, simp_tag in enumerate(simp_tags):
         if simp_tag == 'v':
             use_pronoun = 'n' not in simp_tags[:i] and 'p' not in simp_tags[:i]
-            en_lists[i] = expand_verb(tags[i],en_lists[i],use_pronoun)
+            en_lists[i] = expand_verb(tags[i][1], en_lists[i], use_pronoun)
         # elif simp_tag == 's':
         #     en_lists[i].append('')
     return en_lists
@@ -57,16 +56,16 @@ def gramm_expand(annotations,data):
     # else:
     sentence_list = [tup[0] for tup in data]
     pos_list = annotations['pos']
-    
+
     for i,sent in enumerate(sentence_list):
         sentence_list[i] = expand_sent(pos_list,[[word] for word in sent])
         sentence_list[i] = ([word[0] for word in sentence_list[i]],{})
-        print "sli",sentence_list[i]
+        # print "sli",sentence_list[i]
 
         #print sentence_list
     return sentence_list
 
-    
+
 def prep_homicide(annotations,data):
     """Runs through each preposition in the sentence and makes a duplicate
     sentence without that preposition (it is replaced by an empty
@@ -81,9 +80,7 @@ def prep_homicide(annotations,data):
                 data2.append((new_sent,{}))
     return data + data2
 
-    
+
 #print expand_sent(['pp1csn00','sps00','vmip3p0'],[['I'],['to','for'],['have','hold']])
 
 #print gramm_expand([['to','have'],['to','hold']],{'pos':['sps00','vmip3p0']})
-
-
