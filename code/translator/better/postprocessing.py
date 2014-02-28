@@ -207,8 +207,6 @@ EN_model = None
 def pick_best_candidate(source_ann, data):
     """The final postprocessing step which picks just one sentence from
     the candidate list."""
-    return [data[0]]
-
     path = '../corpus/data/'
     corpus = []
     for file in os.listdir(path):

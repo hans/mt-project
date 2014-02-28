@@ -55,9 +55,6 @@ class BetterTranslator(DirectTranslator):
         return data
 
     def translate(self, sentence):
-        if 'nuestra' not in sentence:
-            return ''
-
         print ' '.join(sentence[:8]) + ' ...'
         print '\tInitializing preprocessing'
         sentence, source_annotations = self.preprocess(sentence)
