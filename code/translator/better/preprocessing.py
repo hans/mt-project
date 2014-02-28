@@ -37,9 +37,12 @@ PHRASES = {
     (('para',), None, 'v.n....'): ('a', 'sps00'),
 }
 
-def join_phrases(sentence, annotations):
+def join_phrases(sentence, annotations, phrases=None):
     """Joins phrases which occur in certain part-of-speech contexts,
     replacing the phrase with a new single value."""
+
+    if phrases is None:
+        phrases = PHRASES
 
     if 'pos' not in annotations:
         raise ValueError('Phrase joining requires POS annotations -- '
@@ -49,7 +52,7 @@ def join_phrases(sentence, annotations):
     results = {}
 
     for (tokens, before_context,
-       after_context), (replacement, replacement_pos) in PHRASES.items():
+       after_context), (replacement, replacement_pos) in phrases.items():
         for instance_start, instance_end in find_sublist(sentence, tokens):
             # Check before POS context
             if before_context is not None:

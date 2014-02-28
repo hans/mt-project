@@ -21,6 +21,7 @@ import sys
 import itertools
 
 from translator.better.gramm_expand import gramm_expand
+from translator.better.preprocessing import join_phrases
 
 VOWELS = ('a', 'e', 'i', 'o', 'u')
 def fix_an(source_annotations, data):
@@ -57,6 +58,20 @@ def fix_dont(source_ann, data):
             sentence[i] = "don't"
 
     return data
+
+
+def fix_demonstratives(source_ann, data):
+    PHRASES = {(('the', 'our'), None, None): ('ours', None)}
+    ret = []
+
+    for sentence, annotations in data:
+        # Super hacky
+        annotations['pos'] = [(t, None) for t in sentence]
+
+        s, a = join_phrases(sentence, annotations, PHRASES)
+        ret.append((s, a))
+
+    return ret
 
 
 class CustomLanguageModel:

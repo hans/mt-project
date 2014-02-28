@@ -35,6 +35,7 @@ class BetterTranslator(DirectTranslator):
 
 
     POSTPROCESSING_PIPELINE = [
+        postprocessing.fix_demonstratives,
         gramm_expand.prep_homicide,
         gramm_expand.gramm_expand,
         postprocessing.fix_an,
