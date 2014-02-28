@@ -329,7 +329,6 @@ class BetterTagger(TaggerI):
         for i, token, transitioned, test_tag, replacement_tag in transitions:
             if (test_tag == 'vmn0000' or test_tag == 'van0000'
                 or self.IRREGULAR_STEMS_RE.search(transitioned)):
-                print transitioned, replacement_tag
                 yield i, replacement_tag
 
     ADJECTIVE_ROOT_TRANSITIONS = [
