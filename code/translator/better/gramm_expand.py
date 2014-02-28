@@ -75,10 +75,10 @@ def prep_homicide(annotations,data):
     data2 = []
     for i,tag in enumerate(simp_tags):
         if tag == 's':
-            for sent_tup in data:
-                old_sent = sent_tup[0]
-                new_sent = old_sent[:i] + [''] + old_sent[i+1:]
-                data2.append((new_sent,{}))
+            for sentence, annotations in data:
+                new_sent = sentence[:i] + [''] + sentence[i+1:]
+                data2.append((new_sent, annotations))
+
     return data + data2
 
 
