@@ -101,6 +101,11 @@ class CustomLanguageModel:
     """
     log_prob = 0.0
 
+    # Use unigram for single words
+    if (len(sentence) == 1):
+        log_prob += self.unigram_dict[sentence[0]]
+        return log_prob
+
     # Use bigrams for the beginning of the sentence
     bigram = sentence[0] + ' ' + sentence[1]
     if bigram in self.bigram_dict:
