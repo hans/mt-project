@@ -101,7 +101,7 @@ lo,it,the,him
 mantuviese,maintained,keep,hold
 buenas,good,right,nice
 condiciones,terms
-pudiera,could,be,able,to,can
+pudiera,could,be able to,can
 demostrar,show,demonstrate,prove
 solvencia,solvency,soundness
 mantener,maintain,keep,hold
@@ -230,7 +230,7 @@ qué,what
 jovencito,youngster,youngling
 estaba,was,be,stay
 aquí,here,hither
-es,this is,you are
+es,is
 ésta,this
 tal,such,suchlike
 penelope,penelope
