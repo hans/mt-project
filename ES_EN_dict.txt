@@ -21,7 +21,7 @@ desuso,disuse,desuetude
 un,a,an,one
 eco,echo,reverberation,replication
 de,of,from,by
-tiempos,time,
+tiempos,time
 en,in,on,at
 que,that,what,than
 las,the,them
@@ -66,7 +66,7 @@ gastado,spent,used,wasted
 casi,almost,nearly,about
 todo,all,whole,entire
 el,the
-dinero,money,
+dinero,money
 había,had,have
 heredado,inherited
 sus,their,its,your
@@ -87,7 +87,7 @@ cláusula,clause,article
 testamento,will,testament
 viejo,old,aged,elderly
 moliner,moliner
-especificaba,specified,stipulate,itemize,
+especificaba,specified,stipulate,itemize
 miguel,miguel
 sólo,only,alone,just
 podría,could
