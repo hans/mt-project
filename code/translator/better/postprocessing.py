@@ -20,6 +20,7 @@ import os
 import sys
 import itertools
 
+from translator.better.gramm_expand import gramm_expand
 
 VOWELS = ('a', 'e', 'i', 'o', 'u')
 def fix_an(source_annotations, data):

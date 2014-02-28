@@ -47,13 +47,36 @@ def expand_sent(tags,en_lists):
         #     en_lists[i].append('')
     return en_lists
 
-def gramm_expand(sentences,annotations):
+def gramm_expand(annotations,data):
     """Formats everything correctly for the contract"""
-    for sentence in sentences:
-        posses = annotations['pos'] # Spanish parts of speech
-        list_sent = [[word] for word in sentence]
-        return ([word[0] for word in expand_sent(posses,list_sent)],annotations)
+    print '>>>>','annotations',annotations,'data',data
+    # sometimes annotations and data are flipped with each other
+    if type(annotations) == type([]):
+        sentence_list = annotations
+        pos_list = data['pos']
+    else:
+        sentence_list = data
+        pos_list = annotations['pos']
     
+    for i,sent in enumerate(sentence_list):
+        sentence_list[i] = (expand_sent(pos_list,[[word] for word in sent])[0],{})
+    return sentence_list
+
+    
+def prep_homicide(annotations,data):
+    """Runs through each preposition in the sentence and makes a duplicate
+    sentence without that preposition (it is replaced by an empty
+    string)"""
+    simp_tags = [tup[1][0] if tup[1] != None else '' for tup in annotations['pos']]
+    data2 = []
+    for i,tag in enumerate(simp_tags):
+        if tag == 's':
+            for sent_tup in data:
+                old_sent = sent_tup[0]
+                new_sent = old_sent[:i] + [''] + old_sent[i+1:]
+                data2.append((new_sent,{}))
+    return data + data2
+
     
 #print expand_sent(['pp1csn00','sps00','vmip3p0'],[['I'],['to','for'],['have','hold']])
 
