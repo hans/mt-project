@@ -3,7 +3,6 @@ name.
 
 TODO: remove awkwardness"""
 
-import copy
 import itertools
 
 from translator.direct import DirectTranslator
@@ -14,7 +13,6 @@ class BetterTranslator(DirectTranslator):
 
     PREPROCESSING_PIPELINE = [
         preprocessing.annotate_pos,
-
         preprocessing.join_phrases
     ]
 
@@ -71,6 +69,11 @@ class PerClauseTranslator(BetterTranslator):
     def __init__(self, *args, **kwargs):
         super(PerClauseTranslator, self).__init__(*args, **kwargs)
 
+    # Should these tokens precede what might be marked as a clause
+    # boundary, the succeeding token should never be considered a clause
+    # boundary
+    CLAUSE_NON_BOUNDARY_PREFIXES = ['lo', 'de', 'es']
+
     CLAUSE_BOUNDARIES = [',', 'que', 'y']
 
     def get_clauses(self, tokens):
@@ -81,12 +84,16 @@ class PerClauseTranslator(BetterTranslator):
         null)."""
 
         result = []
+        ignore_next = False
+
         for token in tokens:
-            if token in self.CLAUSE_BOUNDARIES:
+            if token in self.CLAUSE_BOUNDARIES and not ignore_next:
                 yield result, token
                 result = []
             else:
                 result.append(token)
+
+            ignore_next = token in self.CLAUSE_NON_BOUNDARY_PREFIXES
 
         yield result, None
 
@@ -100,16 +107,3 @@ class PerClauseTranslator(BetterTranslator):
                               .translate([boundary]))
 
         return ' '.join(result)
-
-
-def take(iterator, n):
-    """Take up to `n` elements from `iterator`."""
-
-    result = []
-    for _ in range(n):
-        try:
-            result.append(next(iterator))
-        except StopIteration:
-            return result
-
-    return result
