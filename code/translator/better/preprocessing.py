@@ -33,8 +33,10 @@ PHRASES = {
 
     (('de', 'que'), None, '(n|d)......|v.s....|pp...a..'): ('que', 'cs'),
 
-    # 'para' followed by a verb translates to English "to"
+    # 'para', 'de' followed by an infinitive verb translates to English
+    # "to"
     (('para',), None, 'v.n....'): ('a', 'sps00'),
+    (('de',), None, 'v.n....'): ('a', 'sps00'),
 }
 
 def join_phrases(sentence, annotations, phrases=None):
