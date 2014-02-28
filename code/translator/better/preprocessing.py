@@ -31,7 +31,7 @@ PHRASES = {
     # 'lo que' followed by a verb translates to English "what"
     (('lo', 'que'), None, 'v......'): ('qué', 'dt0cn0'),
 
-    (('de', 'que'), None, '(n|d)......'): ('que', 'cs'),
+    (('de', 'que'), None, '(n|d)......|v.s....|pp...a..'): ('que', 'cs'),
 
     # 'para' followed by a verb translates to English "to"
     (('para',), None, 'v.n....'): ('a', 'sps00'),
