@@ -49,17 +49,21 @@ def expand_sent(tags,en_lists):
 
 def gramm_expand(annotations,data):
     """Formats everything correctly for the contract"""
-    print '>>>>','annotations',annotations,'data',data
+    #print '>>>>','annotations',annotations,'data',data
     # sometimes annotations and data are flipped with each other
-    if type(annotations) == type([]):
-        sentence_list = annotations
-        pos_list = data['pos']
-    else:
-        sentence_list = data
-        pos_list = annotations['pos']
+    # if type(annotations) == type([]):
+    #     sentence_list = annotations
+    #     pos_list = data['pos']
+    # else:
+    sentence_list = [tup[0] for tup in data]
+    pos_list = annotations['pos']
     
     for i,sent in enumerate(sentence_list):
-        sentence_list[i] = (expand_sent(pos_list,[[word] for word in sent])[0],{})
+        sentence_list[i] = expand_sent(pos_list,[[word] for word in sent])
+        sentence_list[i] = ([word[0] for word in sentence_list[i]],{})
+        print "sli",sentence_list[i]
+
+        #print sentence_list
     return sentence_list
 
     
@@ -80,6 +84,6 @@ def prep_homicide(annotations,data):
     
 #print expand_sent(['pp1csn00','sps00','vmip3p0'],[['I'],['to','for'],['have','hold']])
 
-print gramm_expand([['to','have'],['to','hold']],{'pos':['sps00','vmip3p0']})
+#print gramm_expand([['to','have'],['to','hold']],{'pos':['sps00','vmip3p0']})
 
 
