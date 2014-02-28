@@ -95,7 +95,9 @@ class CustomLanguageModel:
     log_prob = 0.0
 
     # Use unigram for single words
-    if (len(sentence) == 1):
+    if (len(sentence) == 0):
+        return float('-inf')
+    elif (len(sentence) == 1):
         if sentence[0] in self.unigram_dict:
             log_prob += self.unigram_dict[sentence[0]]
         else:
