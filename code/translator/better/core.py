@@ -56,6 +56,17 @@ class BetterTranslator(DirectTranslator):
 
         return data
 
+    def join_tokens(self, tokens):
+        """Return a list of tokens which can be joined with the empty
+        string."""
+
+        for t1, t2 in zip(tokens, tokens[1:] + ['']):
+            space = True
+            if t2 in ['', ',', '.', '!', '?']:
+                space = False
+
+            yield '{}{}'.format(t1, ' ' if space else '')
+
     def translate(self, sentence):
         print ' '.join(sentence[:8]) + ' ... ' + ''.join(sentence[-1:])
         print '\tInitializing preprocessing'
@@ -65,9 +76,8 @@ class BetterTranslator(DirectTranslator):
         candidate_words = (super(BetterTranslator, self)
                            .get_candidate_words(sentence))
 
-        lengths = [len(cands) for cands in candidate_words]
-        print lengths
-        product_size = reduce(operator.mul, lengths)
+        product_size = reduce(operator.mul,
+                              [len(cands) for cands in candidate_words])
 
         print '\tCalculating Cartesian product (size: ', product_size, ')'
         candidate_sentences = list(itertools.product(*candidate_words))
@@ -82,9 +92,9 @@ class BetterTranslator(DirectTranslator):
         if not postprocessing_data:
             return None
 
-        # TODO: ' '.join(..) is not optimal
         print '\tDone'
-        return ' '.join(postprocessing_data[0][0])
+
+        return ''.join(self.join_tokens(postprocessing_data[0][0]))
 
 
 class PerClauseTranslator(BetterTranslator):
@@ -133,4 +143,8 @@ class PerClauseTranslator(BetterTranslator):
                 result.append(super(PerClauseTranslator, self)
                               .translate([boundary]))
 
-        return ' '.join(result)
+        ret = ''.join(self.join_tokens(result))
+        if ret:
+            ret = ret[0].upper() + ret[1:]
+
+        return ret
