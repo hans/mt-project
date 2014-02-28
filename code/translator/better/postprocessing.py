@@ -151,7 +151,7 @@ class CustomLanguageModel:
 def pick_best_candidate(source_ann, data):
     """The final postprocessing step which picks just one sentence from
     the candidate list."""
-    path = '../../../corpus/data/'
+    path = '../corpus/data/'
     corpus = []
     for file in os.listdir(path):
         curr_file = os.path.join(path, file)
