@@ -132,3 +132,16 @@ def annotate_pos(sentence, annotations):
 
     annotations['pos'] = parts_of_speech
     return sentence, annotations
+
+
+def invert_by_pos(pos_before, pos_after):
+    """Build a preprocessing function which swaps one or more instances
+    of tokens with the POS `pos_before` with one or more instances of
+    tokens with the POS `pos_after` when the latter tokens directly
+    succeed the former."""
+
+    def invert_fn(sentence, annotations):
+        # TODO
+        return sentence, annotations
+
+    return invert_fn
