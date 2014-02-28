@@ -29,12 +29,12 @@ def find_sublist(xs, sublist):
 #     (phrase, before_POS_context, after_POS_context) => replacement
 PHRASES = {
     # 'lo que' followed by a verb translates to English "what"
-    (('lo', 'que'), None, 'v......'): 'qué',
+    (('lo', 'que'), None, 'v......'): ('qué', 'dt0cn0'),
 
-    (('de', 'que'), None, '(n|d)......'): 'que',
+    (('de', 'que'), None, '(n|d)......'): ('que', 'cs'),
 
     # 'para' followed by a verb translates to English "to"
-    (('para',), None, 'v.n....'): 'a',
+    (('para',), None, 'v.n....'): ('a', 'sps00'),
 }
 
 def join_phrases(sentence, annotations):
@@ -48,7 +48,8 @@ def join_phrases(sentence, annotations):
 
     results = {}
 
-    for (tokens, before_context, after_context), replacement in PHRASES.items():
+    for (tokens, before_context,
+       after_context), (replacement, replacement_pos) in PHRASES.items():
         for instance_start, instance_end in find_sublist(sentence, tokens):
             # Check before POS context
             if before_context is not None:
@@ -73,19 +74,28 @@ def join_phrases(sentence, annotations):
 
             # Context matches went all right -- add this phrase mapping
             # to our results
-            results[instance_start] = (len(tokens), replacement)
+            results[instance_start] = (len(tokens), replacement,
+                                       replacement_pos)
 
     # Now build a result sentence
     sentence_ret = []
+    pos_ret = []
+
     i = 0
     while i < len(sentence):
         if i in results:
-            original_length, replacement = results[i]
+            original_length, replacement, replacement_pos = results[i]
             sentence_ret.append(replacement)
+            pos_ret.append((replacement, replacement_pos))
+
             i += original_length
         else:
             sentence_ret.append(sentence[i])
+            pos_ret.append((sentence[i], annotations['pos'][i][1]))
+
             i += 1
+
+    annotations['pos'] = pos_ret
 
     return sentence_ret, annotations
 
