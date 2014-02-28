@@ -45,7 +45,6 @@ class CustomLanguageModel:
 
     # Add <unk>
     self.unigram_dict["<UNK>"] = 0
-    print "Trained unigram model"
 
     # Calculate bigram counts
     bigram = ''
@@ -56,7 +55,6 @@ class CustomLanguageModel:
                 self.bigram_dict[bigram] += 1
             else:
                 self.bigram_dict[bigram] = 1
-    print "Trained bigram model"
 
 
     # Calculate trigram counts
@@ -68,7 +66,6 @@ class CustomLanguageModel:
                 self.trigram_dict[trigram] += 1
             else:
                 self.trigram_dict[trigram] = 1
-    print "Trained trigram model"
 
 
     # Build trigram unsmoothed log-probabilities
@@ -78,14 +75,11 @@ class CustomLanguageModel:
         trigram_prob = math.log(self.trigram_dict[trigram]) - math.log(self.bigram_dict[first_bigram])
         self.trigram_dict[trigram] = trigram_prob
 
-    print "Trigram probs"
-
     # Build bigram unsmoothed log-probabilities
     bigram_prob = 0.0
     for bigram in self.bigram_dict:
         bigram_prob = math.log(self.bigram_dict[bigram]) - math.log(self.unigram_dict[bigram.split()[0]])
         self.bigram_dict[bigram] = bigram_prob
-    print "Bigram probs"
 
     # Build Laplace unigram log-probabilities
     word_prob = 0.0
@@ -93,7 +87,6 @@ class CustomLanguageModel:
     for word in self.unigram_dict:
         word_prob = math.log(self.unigram_dict[word] + 1) - math.log(num_words + vocab_size)
         self.unigram_dict[word] = word_prob
-    print "Unigram probs"
 
   def score(self, sentence):
     """ Takes a list of strings as argument and returns the log-probability of the
@@ -102,7 +95,9 @@ class CustomLanguageModel:
     log_prob = 0.0
 
     # Use unigram for single words
-    if (len(sentence) == 1):
+    if (len(sentence) == 0):
+        return float('-inf')
+    elif (len(sentence) == 1):
         if sentence[0] in self.unigram_dict:
             log_prob += self.unigram_dict[sentence[0]]
         else:
@@ -136,21 +131,20 @@ class CustomLanguageModel:
 
     return log_prob
 
-  def best_sentence(self, sentence_list):
-    if len(sentence_list) == 0:
-      return []
-
+  def best_sentence(self, data):
     bestScore = float('-inf')
+    bestSentence = None
 
-    for i in xrange(0, len(sentence_list)):
+    for i in xrange(0, len(data)):
       # Selects the maximum probability sentence here, according to the noisy channel model.
-      currSentence = sentence_list[i][0][:]
+      currSentence = data[i][0][:]
       currScore = self.score(currSentence)
-      print currSentence
-      print currScore
+      # print currSentence
+      # print currScore
       if currScore > bestScore:
         bestScore = currScore
-        bestSentence = sentence_list[i]
+        bestSentence = data[i]
+
     return bestSentence
 
 
@@ -167,8 +161,11 @@ def pick_best_candidate(source_ann, data):
             file_contents = open(curr_file, 'r')
             corpus.extend(file_contents.read().split())
 
+    corpus_list = []
+    corpus_list.append(corpus)
+
     global EN_model
     if EN_model is None:
-        EN_model = CustomLanguageModel(corpus)
+        EN_model = CustomLanguageModel(corpus_list)
 
-    return EN_model.best_sentence(data)
+    return [EN_model.best_sentence(data)]
