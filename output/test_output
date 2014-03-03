@@ -1,0 +1,471 @@
+----- <class 'translator.direct.DirectTranslator'>
+to the return to home check that fermin or my father already had open the bookstore .
+is asked if would be so weak that the sheet of the knife just rip a tibia agony in its meat smelly and softened by the indolence .
+bea sighed , stirring the head .
+by a time , my readings victorian departure to the rescue and understood that that view era the ruin of a practice already in disuse , a echo of time in that the families wealthy possessed of mannequins created to the measure of the member of the family for the making of clothes and trousseau .
+the trick is in no join the peseta of three in three , but of three million in three million .
+Al regresar a casa comprobé ... comprobé
+	Initializing preprocessing
+		Preprocessing:  <function annotate_pos at 0x10bcdfa28>
+			Untagged:  []
+		Preprocessing:  <function join_phrases at 0x10bcdf9b0>
+		Preprocessing:  <function revert_fn at 0x10bd07758>
+		Preprocessing:  <function revert_fn at 0x10bd077d0>
+		Preprocessing:  <function revert_fn at 0x10bd07848>
+	Calculating Cartesian product (size:  162 )
+	Initiating postprocessing
+		Postprocessing:  <function fix_demonstratives at 0x10bd07410>
+		Postprocessing:  <function gramm_expand at 0x10bd071b8>
+		Postprocessing:  <function fix_an at 0x10bd072a8>
+		Postprocessing:  <function fix_dont at 0x10bd07320>
+		Postprocessing:  <function dont_in_verb at 0x10bd07398>
+		Postprocessing:  <function pick_best_candidate at 0x10bd07488>
+	Done
+que ... que
+	Initializing preprocessing
+		Preprocessing:  <function annotate_pos at 0x10bcdfa28>
+			Untagged:  []
+		Preprocessing:  <function join_phrases at 0x10bcdf9b0>
+		Preprocessing:  <function revert_fn at 0x10bd07758>
+		Preprocessing:  <function revert_fn at 0x10bd077d0>
+		Preprocessing:  <function revert_fn at 0x10bd07848>
+	Calculating Cartesian product (size:  3 )
+	Initiating postprocessing
+		Postprocessing:  <function fix_demonstratives at 0x10bd07410>
+		Postprocessing:  <function gramm_expand at 0x10bd071b8>
+		Postprocessing:  <function fix_an at 0x10bd072a8>
+		Postprocessing:  <function fix_dont at 0x10bd07320>
+		Postprocessing:  <function dont_in_verb at 0x10bd07398>
+		Postprocessing:  <function pick_best_candidate at 0x10bd07488>
+	Done
+Fermín o mi padre ya habían abierto la ... .
+	Initializing preprocessing
+		Preprocessing:  <function annotate_pos at 0x10bcdfa28>
+			Untagged:  ['ferm\xc3\xadn', 'librer\xc3\xada']
+		Preprocessing:  <function join_phrases at 0x10bcdf9b0>
+		Preprocessing:  <function revert_fn at 0x10bd07758>
+		Preprocessing:  <function revert_fn at 0x10bd077d0>
+		Preprocessing:  <function revert_fn at 0x10bd07848>
+	Calculating Cartesian product (size:  864 )
+	Initiating postprocessing
+		Postprocessing:  <function fix_demonstratives at 0x10bd07410>
+		Postprocessing:  <function gramm_expand at 0x10bd071b8>
+		Postprocessing:  <function fix_an at 0x10bd072a8>
+		Postprocessing:  <function fix_dont at 0x10bd07320>
+		Postprocessing:  <function dont_in_verb at 0x10bd07398>
+		Postprocessing:  <function pick_best_candidate at 0x10bd07488>
+	Done
+Se preguntaba si estaría tan débil ... débil
+	Initializing preprocessing
+		Preprocessing:  <function annotate_pos at 0x10bcdfa28>
+			Untagged:  ['d\xc3\xa9bil']
+		Preprocessing:  <function join_phrases at 0x10bcdf9b0>
+		Preprocessing:  <function revert_fn at 0x10bd07758>
+		Preprocessing:  <function revert_fn at 0x10bd077d0>
+		Preprocessing:  <function revert_fn at 0x10bd07848>
+	Calculating Cartesian product (size:  486 )
+	Initiating postprocessing
+		Postprocessing:  <function fix_demonstratives at 0x10bd07410>
+		Postprocessing:  <function gramm_expand at 0x10bd071b8>
+		Postprocessing:  <function fix_an at 0x10bd072a8>
+		Postprocessing:  <function fix_dont at 0x10bd07320>
+		Postprocessing:  <function dont_in_verb at 0x10bd07398>
+		Postprocessing:  <function pick_best_candidate at 0x10bd07488>
+	Done
+que ... que
+	Initializing preprocessing
+		Preprocessing:  <function annotate_pos at 0x10bcdfa28>
+			Untagged:  []
+		Preprocessing:  <function join_phrases at 0x10bcdf9b0>
+		Preprocessing:  <function revert_fn at 0x10bd07758>
+		Preprocessing:  <function revert_fn at 0x10bd077d0>
+		Preprocessing:  <function revert_fn at 0x10bd07848>
+	Calculating Cartesian product (size:  3 )
+	Initiating postprocessing
+		Postprocessing:  <function fix_demonstratives at 0x10bd07410>
+		Postprocessing:  <function gramm_expand at 0x10bd071b8>
+		Postprocessing:  <function fix_an at 0x10bd072a8>
+		Postprocessing:  <function fix_dont at 0x10bd07320>
+		Postprocessing:  <function dont_in_verb at 0x10bd07398>
+		Postprocessing:  <function pick_best_candidate at 0x10bd07488>
+	Done
+la hoja del cuchillo apenas arrancaría una tibia ... maloliente
+	Initializing preprocessing
+		Preprocessing:  <function annotate_pos at 0x10bcdfa28>
+			Untagged:  ['cuchillo', 'agon\xc3\xada', 'maloliente']
+		Preprocessing:  <function join_phrases at 0x10bcdf9b0>
+		Preprocessing:  <function revert_fn at 0x10bd07758>
+		Preprocessing:  <function revert_fn at 0x10bd077d0>
+		Preprocessing:  <function revert_fn at 0x10bd07848>
+	Calculating Cartesian product (size:  17496 )
+	Initiating postprocessing
+		Postprocessing:  <function fix_demonstratives at 0x10bd07410>
+		Postprocessing:  <function gramm_expand at 0x10bd071b8>
+		Postprocessing:  <function fix_an at 0x10bd072a8>
+		Postprocessing:  <function fix_dont at 0x10bd07320>
+		Postprocessing:  <function dont_in_verb at 0x10bd07398>
+		Postprocessing:  <function pick_best_candidate at 0x10bd07488>
+	Done
+y ... y
+	Initializing preprocessing
+		Preprocessing:  <function annotate_pos at 0x10bcdfa28>
+			Untagged:  []
+		Preprocessing:  <function join_phrases at 0x10bcdf9b0>
+		Preprocessing:  <function revert_fn at 0x10bd07758>
+		Preprocessing:  <function revert_fn at 0x10bd077d0>
+		Preprocessing:  <function revert_fn at 0x10bd07848>
+	Calculating Cartesian product (size:  1 )
+	Initiating postprocessing
+		Postprocessing:  <function fix_demonstratives at 0x10bd07410>
+		Postprocessing:  <function gramm_expand at 0x10bd071b8>
+		Postprocessing:  <function fix_an at 0x10bd072a8>
+		Postprocessing:  <function fix_dont at 0x10bd07320>
+		Postprocessing:  <function dont_in_verb at 0x10bd07398>
+		Postprocessing:  <function pick_best_candidate at 0x10bd07488>
+	Done
+reblandecida por la indolencia . ... .
+	Initializing preprocessing
+		Preprocessing:  <function annotate_pos at 0x10bcdfa28>
+			Untagged:  ['reblandecida', 'indolencia']
+		Preprocessing:  <function join_phrases at 0x10bcdf9b0>
+		Preprocessing:  <function revert_fn at 0x10bd07758>
+		Preprocessing:  <function revert_fn at 0x10bd077d0>
+		Preprocessing:  <function revert_fn at 0x10bd07848>
+	Calculating Cartesian product (size:  12 )
+	Initiating postprocessing
+		Postprocessing:  <function fix_demonstratives at 0x10bd07410>
+		Postprocessing:  <function gramm_expand at 0x10bd071b8>
+		Postprocessing:  <function fix_an at 0x10bd072a8>
+		Postprocessing:  <function fix_dont at 0x10bd07320>
+		Postprocessing:  <function dont_in_verb at 0x10bd07398>
+		Postprocessing:  <function pick_best_candidate at 0x10bd07488>
+	Done
+Bea suspiró ... suspiró
+	Initializing preprocessing
+		Preprocessing:  <function annotate_pos at 0x10bcdfa28>
+			Untagged:  ['bea', 'suspir\xc3\xb3']
+		Preprocessing:  <function join_phrases at 0x10bcdf9b0>
+		Preprocessing:  <function revert_fn at 0x10bd07758>
+		Preprocessing:  <function revert_fn at 0x10bd077d0>
+		Preprocessing:  <function revert_fn at 0x10bd07848>
+	Calculating Cartesian product (size:  2 )
+	Initiating postprocessing
+		Postprocessing:  <function fix_demonstratives at 0x10bd07410>
+		Postprocessing:  <function gramm_expand at 0x10bd071b8>
+		Postprocessing:  <function fix_an at 0x10bd072a8>
+		Postprocessing:  <function fix_dont at 0x10bd07320>
+		Postprocessing:  <function dont_in_verb at 0x10bd07398>
+		Postprocessing:  <function pick_best_candidate at 0x10bd07488>
+	Done
+, ... ,
+	Initializing preprocessing
+		Preprocessing:  <function annotate_pos at 0x10bcdfa28>
+			Untagged:  []
+		Preprocessing:  <function join_phrases at 0x10bcdf9b0>
+		Preprocessing:  <function revert_fn at 0x10bd07758>
+		Preprocessing:  <function revert_fn at 0x10bd077d0>
+		Preprocessing:  <function revert_fn at 0x10bd07848>
+	Calculating Cartesian product (size:  1 )
+	Initiating postprocessing
+		Postprocessing:  <function fix_demonstratives at 0x10bd07410>
+		Postprocessing:  <function gramm_expand at 0x10bd071b8>
+		Postprocessing:  <function fix_an at 0x10bd072a8>
+		Postprocessing:  <function fix_dont at 0x10bd07320>
+		Postprocessing:  <function dont_in_verb at 0x10bd07398>
+		Postprocessing:  <function pick_best_candidate at 0x10bd07488>
+	Done
+agitando la cabeza . ... .
+	Initializing preprocessing
+		Preprocessing:  <function annotate_pos at 0x10bcdfa28>
+			Untagged:  ['agitando']
+		Preprocessing:  <function join_phrases at 0x10bcdf9b0>
+		Preprocessing:  <function revert_fn at 0x10bd07758>
+		Preprocessing:  <function revert_fn at 0x10bd077d0>
+		Preprocessing:  <function revert_fn at 0x10bd07848>
+	Calculating Cartesian product (size:  18 )
+	Initiating postprocessing
+		Postprocessing:  <function fix_demonstratives at 0x10bd07410>
+		Postprocessing:  <function gramm_expand at 0x10bd071b8>
+		Postprocessing:  <function fix_an at 0x10bd072a8>
+		Postprocessing:  <function fix_dont at 0x10bd07320>
+		Postprocessing:  <function dont_in_verb at 0x10bd07398>
+		Postprocessing:  <function pick_best_candidate at 0x10bd07488>
+	Done
+Por una vez ... vez
+	Initializing preprocessing
+		Preprocessing:  <function annotate_pos at 0x10bcdfa28>
+			Untagged:  []
+		Preprocessing:  <function join_phrases at 0x10bcdf9b0>
+		Preprocessing:  <function revert_fn at 0x10bd07758>
+		Preprocessing:  <function revert_fn at 0x10bd077d0>
+		Preprocessing:  <function revert_fn at 0x10bd07848>
+	Calculating Cartesian product (size:  27 )
+	Initiating postprocessing
+		Postprocessing:  <function fix_demonstratives at 0x10bd07410>
+		Postprocessing:  <function gramm_expand at 0x10bd071b8>
+		Postprocessing:  <function fix_an at 0x10bd072a8>
+		Postprocessing:  <function fix_dont at 0x10bd07320>
+		Postprocessing:  <function dont_in_verb at 0x10bd07398>
+		Postprocessing:  <function pick_best_candidate at 0x10bd07488>
+	Done
+, ... ,
+	Initializing preprocessing
+		Preprocessing:  <function annotate_pos at 0x10bcdfa28>
+			Untagged:  []
+		Preprocessing:  <function join_phrases at 0x10bcdf9b0>
+		Preprocessing:  <function revert_fn at 0x10bd07758>
+		Preprocessing:  <function revert_fn at 0x10bd077d0>
+		Preprocessing:  <function revert_fn at 0x10bd07848>
+	Calculating Cartesian product (size:  1 )
+	Initiating postprocessing
+		Postprocessing:  <function fix_demonstratives at 0x10bd07410>
+		Postprocessing:  <function gramm_expand at 0x10bd071b8>
+		Postprocessing:  <function fix_an at 0x10bd072a8>
+		Postprocessing:  <function fix_dont at 0x10bd07320>
+		Postprocessing:  <function dont_in_verb at 0x10bd07398>
+		Postprocessing:  <function pick_best_candidate at 0x10bd07488>
+	Done
+mis lecturas victorianas salieron al rescate ... rescate
+	Initializing preprocessing
+		Preprocessing:  <function annotate_pos at 0x10bcdfa28>
+			Untagged:  ['lecturas', 'victorianas']
+		Preprocessing:  <function join_phrases at 0x10bcdf9b0>
+		Preprocessing:  <function revert_fn at 0x10bd07758>
+		Preprocessing:  <function revert_fn at 0x10bd077d0>
+		Preprocessing:  <function revert_fn at 0x10bd07848>
+	Calculating Cartesian product (size:  36 )
+	Initiating postprocessing
+		Postprocessing:  <function fix_demonstratives at 0x10bd07410>
+		Postprocessing:  <function gramm_expand at 0x10bd071b8>
+		Postprocessing:  <function fix_an at 0x10bd072a8>
+		Postprocessing:  <function fix_dont at 0x10bd07320>
+		Postprocessing:  <function dont_in_verb at 0x10bd07398>
+		Postprocessing:  <function pick_best_candidate at 0x10bd07488>
+	Done
+y ... y
+	Initializing preprocessing
+		Preprocessing:  <function annotate_pos at 0x10bcdfa28>
+			Untagged:  []
+		Preprocessing:  <function join_phrases at 0x10bcdf9b0>
+		Preprocessing:  <function revert_fn at 0x10bd07758>
+		Preprocessing:  <function revert_fn at 0x10bd077d0>
+		Preprocessing:  <function revert_fn at 0x10bd07848>
+	Calculating Cartesian product (size:  1 )
+	Initiating postprocessing
+		Postprocessing:  <function fix_demonstratives at 0x10bd07410>
+		Postprocessing:  <function gramm_expand at 0x10bd071b8>
+		Postprocessing:  <function fix_an at 0x10bd072a8>
+		Postprocessing:  <function fix_dont at 0x10bd07320>
+		Postprocessing:  <function dont_in_verb at 0x10bd07398>
+		Postprocessing:  <function pick_best_candidate at 0x10bd07488>
+	Done
+comprendí ... comprendí
+	Initializing preprocessing
+		Preprocessing:  <function annotate_pos at 0x10bcdfa28>
+			Untagged:  []
+		Preprocessing:  <function join_phrases at 0x10bcdf9b0>
+		Preprocessing:  <function revert_fn at 0x10bd07758>
+		Preprocessing:  <function revert_fn at 0x10bd077d0>
+		Preprocessing:  <function revert_fn at 0x10bd07848>
+	Calculating Cartesian product (size:  3 )
+	Initiating postprocessing
+		Postprocessing:  <function fix_demonstratives at 0x10bd07410>
+		Postprocessing:  <function gramm_expand at 0x10bd071b8>
+		Postprocessing:  <function fix_an at 0x10bd072a8>
+		Postprocessing:  <function fix_dont at 0x10bd07320>
+		Postprocessing:  <function dont_in_verb at 0x10bd07398>
+		Postprocessing:  <function pick_best_candidate at 0x10bd07488>
+	Done
+que ... que
+	Initializing preprocessing
+		Preprocessing:  <function annotate_pos at 0x10bcdfa28>
+			Untagged:  []
+		Preprocessing:  <function join_phrases at 0x10bcdf9b0>
+		Preprocessing:  <function revert_fn at 0x10bd07758>
+		Preprocessing:  <function revert_fn at 0x10bd077d0>
+		Preprocessing:  <function revert_fn at 0x10bd07848>
+	Calculating Cartesian product (size:  3 )
+	Initiating postprocessing
+		Postprocessing:  <function fix_demonstratives at 0x10bd07410>
+		Postprocessing:  <function gramm_expand at 0x10bd071b8>
+		Postprocessing:  <function fix_an at 0x10bd072a8>
+		Postprocessing:  <function fix_dont at 0x10bd07320>
+		Postprocessing:  <function dont_in_verb at 0x10bd07398>
+		Postprocessing:  <function pick_best_candidate at 0x10bd07488>
+	Done
+aquella visión era la ruina de una práctica ... desuso
+	Initializing preprocessing
+		Preprocessing:  <function annotate_pos at 0x10bcdfa28>
+			Untagged:  ['visi\xc3\xb3n', 'pr\xc3\xa1ctica']
+		Preprocessing:  <function join_phrases at 0x10bcdf9b0>
+		Preprocessing:  <function revert_fn at 0x10bd07758>
+		Preprocessing:  <function revert_fn at 0x10bd077d0>
+		Preprocessing:  <function revert_fn at 0x10bd07848>
+	Calculating Cartesian product (size:  3456 )
+	Initiating postprocessing
+		Postprocessing:  <function fix_demonstratives at 0x10bd07410>
+		Postprocessing:  <function gramm_expand at 0x10bd071b8>
+		Postprocessing:  <function fix_an at 0x10bd072a8>
+		Postprocessing:  <function fix_dont at 0x10bd07320>
+		Postprocessing:  <function dont_in_verb at 0x10bd07398>
+		Postprocessing:  <function pick_best_candidate at 0x10bd07488>
+	Done
+, ... ,
+	Initializing preprocessing
+		Preprocessing:  <function annotate_pos at 0x10bcdfa28>
+			Untagged:  []
+		Preprocessing:  <function join_phrases at 0x10bcdf9b0>
+		Preprocessing:  <function revert_fn at 0x10bd07758>
+		Preprocessing:  <function revert_fn at 0x10bd077d0>
+		Preprocessing:  <function revert_fn at 0x10bd07848>
+	Calculating Cartesian product (size:  1 )
+	Initiating postprocessing
+		Postprocessing:  <function fix_demonstratives at 0x10bd07410>
+		Postprocessing:  <function gramm_expand at 0x10bd071b8>
+		Postprocessing:  <function fix_an at 0x10bd072a8>
+		Postprocessing:  <function fix_dont at 0x10bd07320>
+		Postprocessing:  <function dont_in_verb at 0x10bd07398>
+		Postprocessing:  <function pick_best_candidate at 0x10bd07488>
+	Done
+un eco de tiempos en ... en
+	Initializing preprocessing
+		Preprocessing:  <function annotate_pos at 0x10bcdfa28>
+			Untagged:  []
+		Preprocessing:  <function join_phrases at 0x10bcdf9b0>
+		Preprocessing:  <function revert_fn at 0x10bd07758>
+		Preprocessing:  <function revert_fn at 0x10bd077d0>
+		Preprocessing:  <function revert_fn at 0x10bd07848>
+	Calculating Cartesian product (size:  36 )
+	Initiating postprocessing
+		Postprocessing:  <function fix_demonstratives at 0x10bd07410>
+		Postprocessing:  <function gramm_expand at 0x10bd071b8>
+		Postprocessing:  <function fix_an at 0x10bd072a8>
+		Postprocessing:  <function fix_dont at 0x10bd07320>
+		Postprocessing:  <function dont_in_verb at 0x10bd07398>
+		Postprocessing:  <function pick_best_candidate at 0x10bd07488>
+	Done
+que ... que
+	Initializing preprocessing
+		Preprocessing:  <function annotate_pos at 0x10bcdfa28>
+			Untagged:  []
+		Preprocessing:  <function join_phrases at 0x10bcdf9b0>
+		Preprocessing:  <function revert_fn at 0x10bd07758>
+		Preprocessing:  <function revert_fn at 0x10bd077d0>
+		Preprocessing:  <function revert_fn at 0x10bd07848>
+	Calculating Cartesian product (size:  3 )
+	Initiating postprocessing
+		Postprocessing:  <function fix_demonstratives at 0x10bd07410>
+		Postprocessing:  <function gramm_expand at 0x10bd071b8>
+		Postprocessing:  <function fix_an at 0x10bd072a8>
+		Postprocessing:  <function fix_dont at 0x10bd07320>
+		Postprocessing:  <function dont_in_verb at 0x10bd07398>
+		Postprocessing:  <function pick_best_candidate at 0x10bd07488>
+	Done
+las familias acaudaladas disponían de maniquís creados a ... vestidos
+	Initializing preprocessing
+		Preprocessing:  <function annotate_pos at 0x10bcdfa28>
+			Untagged:  ['acaudaladas', 'maniqu\xc3\xads', 'confecci\xc3\xb3n']
+		Preprocessing:  <function join_phrases at 0x10bcdf9b0>
+		Preprocessing:  <function revert_fn at 0x10bd07758>
+		Preprocessing:  <function revert_fn at 0x10bd077d0>
+		Preprocessing:  <function revert_fn at 0x10bd07848>
+	Calculating Cartesian product (size:  147456 )
+	Initiating postprocessing
+		Postprocessing:  <function fix_demonstratives at 0x10bd07410>
+		Postprocessing:  <function gramm_expand at 0x10bd071b8>
+		Postprocessing:  <function fix_an at 0x10bd072a8>
+		Postprocessing:  <function fix_dont at 0x10bd07320>
+		Postprocessing:  <function dont_in_verb at 0x10bd07398>
+		Postprocessing:  <function pick_best_candidate at 0x10bd07488>
+	Done
+y ... y
+	Initializing preprocessing
+		Preprocessing:  <function annotate_pos at 0x10bcdfa28>
+			Untagged:  []
+		Preprocessing:  <function join_phrases at 0x10bcdf9b0>
+		Preprocessing:  <function revert_fn at 0x10bd07758>
+		Preprocessing:  <function revert_fn at 0x10bd077d0>
+		Preprocessing:  <function revert_fn at 0x10bd07848>
+	Calculating Cartesian product (size:  1 )
+	Initiating postprocessing
+		Postprocessing:  <function fix_demonstratives at 0x10bd07410>
+		Postprocessing:  <function gramm_expand at 0x10bd071b8>
+		Postprocessing:  <function fix_an at 0x10bd072a8>
+		Postprocessing:  <function fix_dont at 0x10bd07320>
+		Postprocessing:  <function dont_in_verb at 0x10bd07398>
+		Postprocessing:  <function pick_best_candidate at 0x10bd07488>
+	Done
+ajuares . ... .
+	Initializing preprocessing
+		Preprocessing:  <function annotate_pos at 0x10bcdfa28>
+			Untagged:  ['ajuares']
+		Preprocessing:  <function join_phrases at 0x10bcdf9b0>
+		Preprocessing:  <function revert_fn at 0x10bd07758>
+		Preprocessing:  <function revert_fn at 0x10bd077d0>
+		Preprocessing:  <function revert_fn at 0x10bd07848>
+	Calculating Cartesian product (size:  1 )
+	Initiating postprocessing
+		Postprocessing:  <function fix_demonstratives at 0x10bd07410>
+		Postprocessing:  <function gramm_expand at 0x10bd071b8>
+		Postprocessing:  <function fix_an at 0x10bd072a8>
+		Postprocessing:  <function fix_dont at 0x10bd07320>
+		Postprocessing:  <function dont_in_verb at 0x10bd07398>
+		Postprocessing:  <function pick_best_candidate at 0x10bd07488>
+	Done
+El truco está en no juntar las pesetas ... tres
+	Initializing preprocessing
+		Preprocessing:  <function annotate_pos at 0x10bcdfa28>
+			Untagged:  ['est\xc3\xa1', 'juntar']
+		Preprocessing:  <function join_phrases at 0x10bcdf9b0>
+		Preprocessing:  <function revert_fn at 0x10bd07758>
+		Preprocessing:  <function revert_fn at 0x10bd077d0>
+		Preprocessing:  <function revert_fn at 0x10bd07848>
+	Calculating Cartesian product (size:  3888 )
+	Initiating postprocessing
+		Postprocessing:  <function fix_demonstratives at 0x10bd07410>
+		Postprocessing:  <function gramm_expand at 0x10bd071b8>
+		Postprocessing:  <function fix_an at 0x10bd072a8>
+		Postprocessing:  <function fix_dont at 0x10bd07320>
+		Postprocessing:  <function dont_in_verb at 0x10bd07398>
+		Postprocessing:  <function pick_best_candidate at 0x10bd07488>
+	Done
+, ... ,
+	Initializing preprocessing
+		Preprocessing:  <function annotate_pos at 0x10bcdfa28>
+			Untagged:  []
+		Preprocessing:  <function join_phrases at 0x10bcdf9b0>
+		Preprocessing:  <function revert_fn at 0x10bd07758>
+		Preprocessing:  <function revert_fn at 0x10bd077d0>
+		Preprocessing:  <function revert_fn at 0x10bd07848>
+	Calculating Cartesian product (size:  1 )
+	Initiating postprocessing
+		Postprocessing:  <function fix_demonstratives at 0x10bd07410>
+		Postprocessing:  <function gramm_expand at 0x10bd071b8>
+		Postprocessing:  <function fix_an at 0x10bd072a8>
+		Postprocessing:  <function fix_dont at 0x10bd07320>
+		Postprocessing:  <function dont_in_verb at 0x10bd07398>
+		Postprocessing:  <function pick_best_candidate at 0x10bd07488>
+	Done
+sino de tres millones en tres millones . ... .
+	Initializing preprocessing
+		Preprocessing:  <function annotate_pos at 0x10bcdfa28>
+			Untagged:  []
+		Preprocessing:  <function join_phrases at 0x10bcdf9b0>
+		Preprocessing:  <function revert_fn at 0x10bd07758>
+		Preprocessing:  <function revert_fn at 0x10bd077d0>
+		Preprocessing:  <function revert_fn at 0x10bd07848>
+	Calculating Cartesian product (size:  24 )
+	Initiating postprocessing
+		Postprocessing:  <function fix_demonstratives at 0x10bd07410>
+		Postprocessing:  <function gramm_expand at 0x10bd071b8>
+		Postprocessing:  <function fix_an at 0x10bd072a8>
+		Postprocessing:  <function fix_dont at 0x10bd07320>
+		Postprocessing:  <function dont_in_verb at 0x10bd07398>
+		Postprocessing:  <function pick_best_candidate at 0x10bd07488>
+	Done
+----- <class 'translator.better.core.PerClauseTranslator'>
+To the return to place prove that fermin or my father already had opened the bookshop.
+Is ask whether stay so weak that the sheet of the knife just tear a tibia agony in his meat stinking and softened by the indolence.
+Bea sighed, shake her head.
+For a time, my reading victorian they departure to the recovery and I understood that that view age the ruin of a practice already in disuse, an echo of time in that the families wealthy dispose of created mannequins of the action of the member of the family to the making of clothes and trousseau.
+The knack is in no put the peseta of three at three, fate of three million in three million.
